@@ -23,6 +23,7 @@ node_modules
 # misc
 .DS_Store
 *.pem
+Thumbs.db
 
 # debug
 npm-debug.log*
@@ -30,25 +31,36 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
+# env files (contiene tokens sensibles - NO commitear)
+.env
+.env.*
+!.env.example
 
-# vercel
+# vercel / cloudflare
 .vercel
-
+.wrangler
+.dev.vars
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# logs
+*.log
+dev.log
+server.log
+
+# Skills / IDE / sandbox internals
 local-*
 .claude
 .z-ai-config
-*.log
-dev.log
-dev.out.log
-test
-prompt
-
-server.log
-# Skills directory
 /skills/
+.zscripts/
+tests/
+
+# database (SQLite local - los datos se exportan a public/data/)
+db/*.db
+db/*.db-journal
+
+# worklog interno (opcional - comenta la línea si quieres commitearlo)
+worklog.md

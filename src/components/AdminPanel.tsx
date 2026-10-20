@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   LogOut, Plus, Edit3, Trash2, X, Store, Package, Search,
   ExternalLink, Star, RefreshCw, Lock, ShieldCheck, ChevronDown,
-  Save, AlertCircle, LayoutGrid,
+  Save, AlertCircle, LayoutGrid, Rocket, FileJson,
 } from 'lucide-react'
 import { api, ADMIN_TOKEN_DEFAULT } from '@/lib/api'
 import type { Business, Category, Product } from '@/lib/types'
@@ -108,6 +108,7 @@ function AdminDashboard({
   const [managingProducts, setManagingProducts] = useState<Business | null>(null)
   const [confirmReseed, setConfirmReseed] = useState(false)
   const [reseedLoading, setReseedLoading] = useState(false)
+  const [exportLoading, setExportLoading] = useState(false)
   const { toast } = useToast()
 
   const load = useCallback(async () => {
@@ -156,6 +157,23 @@ function AdminDashboard({
     }
   }
 
+  const handleExport = async () => {
+    setExportLoading(true)
+    try {
+      const result = await api.generateStaticData(token)
+      toast({
+        title: '✅ Datos generados',
+        description: 'Los archivos JSON se actualizaron en public/data/. Ahora commitea y deploya.',
+      })
+      console.log(result.message)
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : 'Error desconocido'
+      toast({ title: 'Error al generar', description: msg, variant: 'destructive' })
+    } finally {
+      setExportLoading(false)
+    }
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       {/* Header */}
@@ -178,6 +196,15 @@ function AdminDashboard({
           >
             <RefreshCw className={`w-3.5 h-3.5 ${reseedLoading ? 'animate-spin' : ''}`} />
             Restaurar demo
+          </Button>
+          <Button
+            onClick={handleExport}
+            disabled={exportLoading}
+            className="bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-xs"
+            title="Genera los archivos JSON estáticos listos para deploy en Cloudflare"
+          >
+            {exportLoading ? <RefreshCw className="w-3.5 h-3.5 animate-spin" /> : <Rocket className="w-3.5 h-3.5" />}
+            Generar deploy
           </Button>
           <Button onClick={() => setCreating(true)} className="gradient-brand text-white font-bold">
             <Plus className="w-4 h-4" />

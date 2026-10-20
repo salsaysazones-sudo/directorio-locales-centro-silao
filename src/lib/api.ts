@@ -1,10 +1,12 @@
 import { ADMIN_TOKEN_DEFAULT } from './types'
 import type { Business, Category, Product } from './types'
 
-const API_BASE = ''
+// Enfoque híbrido:
+// - Lectura: siempre desde JSON estático en /data/ (funciona en dev y producción)
+// - Escritura: APIs de admin (solo disponibles en dev / serverless con backend)
 
 async function apiFetch<T>(path: string, opts?: RequestInit): Promise<T> {
-  const res = await fetch(`${API_BASE}${path}`, {
+  const res = await fetch(path, {
     headers: { 'Content-Type': 'application/json', ...(opts?.headers || {}) },
     ...opts,
   })
@@ -13,23 +15,88 @@ async function apiFetch<T>(path: string, opts?: RequestInit): Promise<T> {
   return data as T
 }
 
-export const api = {
-  // Público
-  listBusinesses: (params: { q?: string; category?: string; featured?: boolean } = {}) => {
-    const sp = new URLSearchParams()
-    if (params.q) sp.set('q', params.q)
-    if (params.category) sp.set('category', params.category)
-    if (params.featured) sp.set('featured', '1')
-    return apiFetch<{ businesses: Business[] }>(`/api/businesses?${sp.toString()}`)
-  },
-  getBusiness: (slug: string) =>
-    apiFetch<{ business: Business & { products: Product[] } }>(`/api/businesses/${slug}`),
-  listCategories: () => apiFetch<{ categories: Category[] }>(`/api/categories`),
-  getRecommendations: (slug: string, limit = 4) =>
-    apiFetch<{ recommendations: Business[] }>(`/api/recommendations?slug=${slug}&limit=${limit}`),
-  getStats: () => apiFetch<{ businesses: number; categories: number; products: number }>(`/api/stats`),
+// Caché en memoria para evitar refetch en navegación cliente
+let cache: {
+  businesses?: Business[]
+  categories?: Category[]
+  stats?: { businesses: number; categories: number; products: number }
+  businessDetail: Record<string, Business & { products: Product[] }>
+  recommendations: Record<string, Business[]>
+} = { businessDetail: {}, recommendations: {} }
 
-  // Admin
+export const api = {
+  // ===== Lectura desde JSON estático =====
+  async listBusinesses(params: { q?: string; category?: string; featured?: boolean } = {}): Promise<{ businesses: Business[] }> {
+    if (!cache.businesses) {
+      const data = await apiFetch<{ businesses: Business[] }>('/data/businesses.json')
+      cache.businesses = data.businesses
+    }
+    let result = cache.businesses
+
+    // Filtros en cliente (los datos vienen completos del JSON)
+    if (params.featured) {
+      result = result.filter((b) => b.featured)
+    }
+    if (params.category) {
+      result = result.filter((b) => b.categoryId === params.category)
+    }
+    if (params.q) {
+      const q = params.q.toLowerCase()
+      result = result.filter((b) =>
+        b.name.toLowerCase().includes(q) ||
+        b.description.toLowerCase().includes(q) ||
+        (b.city || '').toLowerCase().includes(q)
+      )
+    }
+    return { businesses: [...result] }
+  },
+
+  async getBusiness(slug: string): Promise<{ business: Business & { products: Product[] } }> {
+    if (!cache.businessDetail[slug]) {
+      const data = await apiFetch<{ business: Business & { products: Product[] } }>(`/data/businesses/${slug}.json`)
+      cache.businessDetail[slug] = data.business
+    }
+    return { business: cache.businessDetail[slug] }
+  },
+
+  async listCategories(): Promise<{ categories: Category[] }> {
+    if (!cache.categories) {
+      const data = await apiFetch<{ categories: Category[] }>('/data/categories.json')
+      cache.categories = data.categories
+    }
+    return { categories: cache.categories }
+  },
+
+  async getRecommendations(slug: string, _limit = 4): Promise<{ recommendations: Business[] }> {
+    if (!cache.recommendations[slug]) {
+      try {
+        const data = await apiFetch<{ recommendations: Business[] }>(`/data/recommendations/${slug}.json`)
+        cache.recommendations[slug] = data.recommendations
+      } catch {
+        // Si no hay archivo, devolver array vacío
+        cache.recommendations[slug] = []
+      }
+    }
+    return { recommendations: cache.recommendations[slug] }
+  },
+
+  async getStats(): Promise<{ businesses: number; categories: number; products: number }> {
+    if (!cache.stats) {
+      try {
+        cache.stats = await apiFetch('/data/stats.json')
+      } catch {
+        cache.stats = { businesses: 0, categories: 0, products: 0 }
+      }
+    }
+    return cache.stats
+  },
+
+  // Invalida caché (útil tras editar en admin)
+  invalidateCache() {
+    cache = { businessDetail: {}, recommendations: {} }
+  },
+
+  // ===== Escritura vía APIs (solo dev) =====
   adminListBusinesses: (token: string) =>
     apiFetch<{ businesses: Business[] }>(`/api/admin/businesses`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -73,6 +140,19 @@ export const api = {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
     }),
+
+  // Generar JSON estático desde admin (dev) - llama al script de exportación
+  async generateStaticData(token: string): Promise<{ ok: boolean; message: string }> {
+    const res = await fetch('/api/export-data', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    const data = await res.json()
+    if (!res.ok) throw new Error(data.error || 'Error al generar datos')
+    // Invalida caché para que los próximos reads traigan datos frescos
+    cache = { businessDetail: {}, recommendations: {} }
+    return data
+  },
 }
 
 export { ADMIN_TOKEN_DEFAULT }

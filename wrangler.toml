@@ -1,0 +1,20 @@
+#:schema node_modules/wrangler/config-schema.json
+
+# Configuración para Cloudflare Workers Static Assets
+# Documentación: https://developers.cloudflare.com/workers/static-assets/
+
+name = "plaza-sv-directorio"
+compatibility_date = "2026-10-01"
+workers_dev = true
+preview_urls = false
+
+[assets]
+# Carpeta con el build estático de Next.js (output: 'export')
+directory = "./out"
+
+# Sirve la página 404 personalizada en lugar de un JSON genérico
+not_found_handling = "404-page"
+
+# Si una URL no existe como archivo, intenta resolverla como ruta SPA
+# (necesario para que /?b=slug funcione al compartirla en redes sociales)
+binding = "ASSETS"
