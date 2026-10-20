@@ -83,9 +83,9 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
               {stats.businesses} negocios activos · {stats.products} productos
             </span>
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
-              Descubre, comparte
+              Descubre, Comparte y haz Crecer
               <br />
-              <span className="gradient-text">negocios locales</span> del centro de silao
+              <span className="gradient-text">Negocios locales</span> de Silao
             </h1>
             <p className="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
               Encuentra negocios, explora sus productos y comparte sus páginas con tus amigos
