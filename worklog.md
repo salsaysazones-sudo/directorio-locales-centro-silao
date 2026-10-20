@@ -41,3 +41,37 @@ Stage Summary:
 - Recomendaciones automáticas (misma categoría + relleno con destacados)
 - Botón WhatsApp flotante con mensaje pre-escrito por negocio
 - Responsive (mobile + desktop), sticky footer, sin errores en runtime
+
+---
+Task ID: 2
+Agent: main (Z.ai)
+Task: Adaptar proyecto para deploy estático en Cloudflare + inicializar git para GitHub.
+
+Work Log:
+- Creé scripts/export-data.ts que lee SQLite y genera JSON en public/data/ (businesses, categories, stats, detalle por slug, recommendations)
+- Adapté src/lib/api.ts: lecturas usan JSON estático (con caché en memoria), escrituras mantienen APIs (solo dev)
+- Creé endpoint /api/export-data que ejecuta el script desde el admin (con token)
+- Agregué botón "Generar deploy" (verde) en AdminPanel que llama a generateStaticData(token)
+- Configuré next.config.ts con output:'export' condicional (BUILD_STATIC=1)
+- Creé scripts/build-static.sh que mueve src/app/api temporalmente durante build estático
+- Primera prueba: el flag `export const dynamic = process.env.BUILD_STATIC` no funcionó (Next.js requiere string estática)
+- Solución: mover la carpeta api a .api-backup-tmp durante el build y restaurarla después
+- Build estático exitoso: genera out/index.html + out/data/*.json + out/_next/ bundles
+- Creé wrangler.toml para Cloudflare Workers Static Assets con not_found_handling="404-page"
+- Creé .env.example documentando DATABASE_URL, ADMIN_TOKEN, NEXT_PUBLIC_ADMIN_TOKEN, BUILD_STATIC
+- Actualicé .gitignore: ignora db/*.db, .env, .wrangler, .zscripts/, tests/, worklog.md
+- Creé README.md con: arquitectura, setup, flujo edición+deploy, estructura proyecto, comandos, troubleshooting
+- Actualicé package.json con scripts: seed, export-data, build:static, deploy, preview
+- Verifiqué con Agent Browser: admin login + botón "Generar deploy" funciona, toast "Datos generados" aparece, POST /api/export-data responde 200
+- Verifiqué build estático: out/ contiene index.html + data/businesses.json + data/businesses/*.json + data/categories.json + data/stats.json + data/recommendations/*.json
+- Verifiqué con python http.server que todos los JSON sirven con 200 OK
+- Configuré git user.email y user.name
+- Hice commit: "feat: adaptar proyecto para deploy estático en Cloudflare + GitHub"
+
+Stage Summary:
+- Proyecto listo para deploy en Cloudflare Workers Static Assets (gratis)
+- Sin remote configurado - el usuario debe crear repo en GitHub y agregar remote
+- Botón "Generar deploy" en admin ejecuta export-data.ts automáticamente
+- 20 negocios demo commiteados en public/data/ (deploy inmediato posible)
+- README.md tiene instrucciones detalladas paso a paso
+- Comandos disponibles: bun run dev (editar), bun run build:static (generar out/), bun run deploy (deploy directo)
