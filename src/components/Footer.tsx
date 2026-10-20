@@ -16,12 +16,12 @@ export function Footer({ onGoHome, onGoAdmin, stats }: FooterProps) {
               <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center">
                 <Store className="w-5 h-5 text-white" />
               </div>
-              <span className="font-extrabold text-xl text-white">
-                Plaza<span className="gradient-text">SV</span>
+              <span className="font-extrabold text-lg text-white">
+                Directorio<span className="gradient-text"> Silao</span>
               </span>
             </div>
             <p className="text-sm text-slate-400 max-w-md leading-relaxed">
-              Directorio digital que conecta negocios locales con su comunidad.
+              Directorio digital de los comercios del centro de Silao, Guanajuato.
               Cada negocio tiene su propia URL para compartir en redes sociales y
               atraer clientes directo a su catálogo.
             </p>
@@ -62,7 +62,7 @@ export function Footer({ onGoHome, onGoAdmin, stats }: FooterProps) {
         </div>
 
         <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2">
-          <p className="text-xs text-slate-500">© 2026 Plaza SV. Todos los derechos reservados.</p>
+          <p className="text-xs text-slate-500">© 2026 Directorio Locales Centro Silao. Todos los derechos reservados.</p>
           <p className="text-xs text-slate-500 flex items-center gap-1">
             Hecho con <Heart className="w-3 h-3 fill-pink-500 text-pink-500" /> para negocios locales
           </p>

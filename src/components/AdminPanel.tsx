@@ -115,7 +115,7 @@ function AdminDashboard({
 
   // Cargar URL pública guardada en localStorage
   useEffect(() => {
-    const saved = typeof window !== 'undefined' ? localStorage.getItem('plaza-sv-public-url') : ''
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('directorio-silao-public-url') : ''
     if (saved) setPublicBaseUrl(saved)
     else if (typeof window !== 'undefined') setPublicBaseUrl(window.location.origin)
   }, [])
@@ -246,7 +246,7 @@ function AdminDashboard({
               onChange={(e) => {
                 setPublicBaseUrl(e.target.value)
                 if (typeof window !== 'undefined') {
-                  localStorage.setItem('plaza-sv-public-url', e.target.value)
+                  localStorage.setItem('directorio-silao-public-url', e.target.value)
                 }
               }}
               placeholder="https://midirectorio.com"

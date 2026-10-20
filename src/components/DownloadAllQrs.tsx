@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 
 interface DownloadAllQrsProps {
   businesses: Business[]
-  publicBaseUrl: string // ej: https://plaza-sv-directorio.sub.workers.dev
+  publicBaseUrl: string // ej: https://directorio-locales-centro-silao.pages.dev
   token: string
 }
 

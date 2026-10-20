@@ -1,4 +1,4 @@
-# Plaza SV · Directorio Digital
+# Directorio Locales Centro Silao · Directorio Digital
 
 Directorio digital de negocios con URLs individuales por negocio. Cada negocio tiene su propia URL compartible (`/?b=slug`) que puede usarse en Facebook, TikTok y WhatsApp. El sitio se despliega como **estático en Cloudflare** (gratis, rápido, sin servidor que mantener) y los datos se editan desde el **panel admin en local**.
 
@@ -44,7 +44,7 @@ Directorio digital de negocios con URLs individuales por negocio. Cada negocio t
 │  ┌─────────────────────────────────────────────────┐   │
 │  │  out/index.html + out/data/*.json               │   │
 │  │  Servido desde 300+ edge locations              │   │
-│  │  URL: https://plaza-sv-directorio.<sub>.workers.dev │   │
+│  │  URL: https://directorio-locales-centro-silao.<sub>.workers.dev │   │
 │  └─────────────────────────────────────────────────┘   │
 └─────────────────────────────────────────────────────────┘
 ```
@@ -136,12 +136,12 @@ BUILD_STATIC=1 bun run build
 wrangler deploy
 ```
 
-Tu sitio estará en `https://plaza-sv-directorio.<tu-subdomain>.workers.dev` (o tu dominio custom).
+Tu sitio estará en `https://directorio-locales-centro-silao.<tu-subdomain>.workers.dev` (o tu dominio custom).
 
 ## Estructura del proyecto
 
 ```
-plaza-sv/
+directorio-locales-centro-silao/
 ├── prisma/
 │   └── schema.prisma           # Modelos: Category, Business, Product
 ├── db/

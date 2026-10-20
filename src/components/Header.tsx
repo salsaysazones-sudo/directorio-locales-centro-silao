@@ -23,8 +23,8 @@ export function Header({ onSearch, onGoHome, onGoAdmin, initialQuery = '' }: Hea
             <div className="w-9 h-9 rounded-xl gradient-brand flex items-center justify-center shadow-glow group-hover:scale-105 transition-transform">
               <Store className="w-5 h-5 text-white" />
             </div>
-            <span className="font-extrabold text-xl tracking-tight hidden sm:block">
-              Plaza<span className="gradient-text">SV</span>
+            <span className="font-extrabold text-base sm:text-xl tracking-tight hidden sm:block">
+              Directorio<span className="gradient-text"> Silao</span>
             </span>
           </button>
 

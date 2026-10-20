@@ -3,7 +3,7 @@
 # Configuración para Cloudflare Workers Static Assets
 # Documentación: https://developers.cloudflare.com/workers/static-assets/
 
-name = "plaza-sv-directorio"
+name = "directorio-locales-centro-silao"
 compatibility_date = "2026-10-01"
 workers_dev = true
 preview_urls = false

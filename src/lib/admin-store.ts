@@ -25,6 +25,6 @@ export const useAdminStore = create<AdminStore>()(
       },
       logout: () => set({ token: null, isAuthed: false }),
     }),
-    { name: 'plaza-sv-admin' }
+    { name: 'directorio-silao-admin' }
   )
 )

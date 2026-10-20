@@ -121,7 +121,7 @@
   }
 }
 
-/* ===== Plaza SV custom styles ===== */
+/* ===== Directorio Silao custom styles ===== */
 @layer utilities {
   .gradient-brand {
     background-image: linear-gradient(135deg, #FF6B35 0%, #EC4899 50%, #8B5CF6 100%);

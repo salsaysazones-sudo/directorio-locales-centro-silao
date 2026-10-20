@@ -94,7 +94,7 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
     : `/?b=${business.slug}`
 
   const whatsappHref = business.whatsapp
-    ? `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(`¡Hola ${business.name}! 😊 Vi su catálogo en Plaza SV y me gustaría más información.`)}`
+    ? `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(`¡Hola ${business.name}! 😊 Vi su catálogo en el Directorio de Silao y me gustaría más información.`)}`
     : null
 
   return (

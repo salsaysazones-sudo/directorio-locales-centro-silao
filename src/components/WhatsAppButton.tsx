@@ -11,7 +11,7 @@ interface WhatsAppButtonProps {
 export function WhatsAppButton({ phone, businessName, color = '#25D366' }: WhatsAppButtonProps) {
   const [open, setOpen] = useState(false)
 
-  const message = encodeURIComponent(`¡Hola ${businessName}! 😊 Vi su catálogo en Plaza SV y me gustaría más información.`)
+  const message = encodeURIComponent(`¡Hola ${businessName}! 😊 Vi su catálogo en el Directorio de Silao y me gustaría más información.`)
   const href = `https://wa.me/${phone}?text=${message}`
 
   return (

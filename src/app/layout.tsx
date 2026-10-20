@@ -10,29 +10,31 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Plaza SV · Directorio Digital de Negocios",
+  title: "Directorio Locales Centro Silao · Comercios de Silao, Guanajuato",
   description:
-    "Descubre y conecta con los mejores negocios locales. Cada negocio tiene su propia URL para compartir en Facebook, TikTok y WhatsApp.",
+    "Descubre y conecta con los mejores negocios del centro de Silao, Guanajuato. Cada negocio tiene su propia URL para compartir en Facebook, TikTok y WhatsApp.",
   keywords: [
     "directorio",
     "negocios",
     "comercios locales",
     "catálogo",
-    "San Salvador",
-    "El Salvador",
+    "Silao",
+    "Guanajuato",
+    "centro Silao",
+    "México",
   ],
-  authors: [{ name: "Plaza SV" }],
+  authors: [{ name: "Directorio Locales Centro Silao" }],
   openGraph: {
-    title: "Plaza SV · Directorio Digital de Negocios",
+    title: "Directorio Locales Centro Silao",
     description:
-      "Descubre y conecta con los mejores negocios locales.",
+      "Descubre y conecta con los mejores negocios del centro de Silao, Guanajuato.",
     type: "website",
-    locale: "es_ES",
+    locale: "es_MX",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Plaza SV · Directorio Digital",
-    description: "Descubre y conecta con los mejores negocios locales.",
+    title: "Directorio Locales Centro Silao",
+    description: "Descubre y conecta con los mejores negocios del centro de Silao.",
   },
 };
 
