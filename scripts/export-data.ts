@@ -55,11 +55,15 @@ async function main() {
     products: productsCount,
   })
 
-  // 3. Lista de negocios (sin productos, con categoría y conteo)
+  // 3. Lista de negocios (incluye productos para búsqueda en cliente)
   console.log('🏪 Lista de negocios...')
   const businesses = await db.business.findMany({
     where: { active: true },
-    include: { category: true, _count: { select: { products: true } } },
+    include: {
+      category: true,
+      _count: { select: { products: true } },
+      products: { select: { id: true, name: true, description: true } },
+    },
     orderBy: [{ featured: 'desc' }, { name: 'asc' }],
   })
   await writeJson(path.join(PUBLIC_DATA, 'businesses.json'), { businesses })

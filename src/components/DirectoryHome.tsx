@@ -117,14 +117,20 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
             </form>
 
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
-              <span className="font-semibold">Populares:</span>
-              {['Restaurantes', 'Pizza', 'Belleza', 'Tech', 'Spa'].map((tag) => (
+              <span className="font-semibold">Categorías:</span>
+              {categories.map((cat) => (
                 <button
-                  key={tag}
-                  onClick={() => handleSearch(tag)}
-                  className="px-3 py-1 rounded-full bg-white/70 hover:bg-white border border-slate-200 font-medium transition-colors"
+                  key={cat.id}
+                  onClick={() => {
+                    setActiveCategory(cat.id)
+                    setQuery('')
+                    onSearchChange?.('')
+                  }}
+                  className="px-3 py-1 rounded-full bg-white/70 hover:bg-white border border-slate-200 font-medium transition-colors flex items-center gap-1"
+                  style={{ color: cat.color }}
                 >
-                  {tag}
+                  <span>{cat.icon}</span>
+                  {cat.name}
                 </button>
               ))}
             </div>

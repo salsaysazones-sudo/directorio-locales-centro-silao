@@ -45,7 +45,13 @@ export const api = {
       result = result.filter((b) =>
         b.name.toLowerCase().includes(q) ||
         b.description.toLowerCase().includes(q) ||
-        (b.city || '').toLowerCase().includes(q)
+        (b.city || '').toLowerCase().includes(q) ||
+        (b.category?.name || '').toLowerCase().includes(q) ||
+        (b.category?.slug || '').toLowerCase().includes(q) ||
+        (b.products?.some(p =>
+          p.name.toLowerCase().includes(q) ||
+          (p.description || '').toLowerCase().includes(q)
+        ) ?? false)
       )
     }
     return { businesses: [...result] }
