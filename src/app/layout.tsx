@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
-
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-});
 
 export const metadata: Metadata = {
   title: "Directorio Locales Centro Silao · Comercios de Silao, Guanajuato",
@@ -46,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        className={`${jakarta.variable} font-sans antialiased bg-white text-slate-900`}
+        className={`font-sans antialiased bg-white text-slate-900`}
       >
         {children}
         <Toaster />
