@@ -93,30 +93,8 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
               
             </p>
 
-            {/* Search hero */}
-            <form
-              onSubmit={(e) => { e.preventDefault(); handleSearch(query) }}
-              className="mt-8 max-w-xl mx-auto"
-            >
-              <div className="relative">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
-                <input
-                  type="text"
-                  value={query}
-                  onChange={(e) => { setQuery(e.target.value); onSearchChange?.(e.target.value) }}
-                  placeholder="Busca un negocio, producto o servicio..."
-                  className="w-full pl-12 pr-32 py-4 bg-white rounded-2xl text-sm font-medium shadow-card border border-slate-100 focus:ring-4 focus:ring-pink-100 outline-none"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2.5 gradient-brand text-white rounded-xl text-sm font-bold hover:opacity-90 transition-opacity"
-                >
-                  Buscar
-                </button>
-              </div>
-            </form>
-
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
+            {/* Categorías debajo del hero */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500">
               <span className="font-semibold">Categorías:</span>
               {categories.map((cat) => (
                 <button
