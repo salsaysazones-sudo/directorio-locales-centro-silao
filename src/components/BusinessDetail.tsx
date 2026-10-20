@@ -198,7 +198,13 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
         {/* Info grid */}
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {business.address && (
-            <InfoItem icon={<MapPin className="w-4 h-4" />} label="Dirección" value={`${business.address}${business.city ? `, ${business.city}` : ''}`} color={color} />
+            <InfoItem
+              icon={<MapPin className="w-4 h-4" />}
+              label="Dirección"
+              value={`${business.address}${business.city ? `, ${business.city}` : ''}`}
+              color={color}
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${business.address}, ${business.city || 'Silao, Guanajuato'}`)}`}
+            />
           )}
           {business.hours && (
             <InfoItem icon={<Clock className="w-4 h-4" />} label="Horario" value={business.hours} color={color} />
