@@ -41,18 +41,61 @@ export const api = {
       result = result.filter((b) => b.categoryId === params.category)
     }
     if (params.q) {
-      const q = params.q.toLowerCase()
-      result = result.filter((b) =>
-        b.name.toLowerCase().includes(q) ||
-        b.description.toLowerCase().includes(q) ||
-        (b.city || '').toLowerCase().includes(q) ||
-        (b.category?.name || '').toLowerCase().includes(q) ||
-        (b.category?.slug || '').toLowerCase().includes(q) ||
-        (b.products?.some(p =>
+      const q = params.q.toLowerCase().trim()
+      // Filtrar negocios que coinciden en cualquier campo
+      const matches = result.filter((b) => {
+        const inName = b.name.toLowerCase().includes(q)
+        const inDesc = b.description.toLowerCase().includes(q)
+        const inCity = (b.city || '').toLowerCase().includes(q)
+        const inCategoryName = (b.category?.name || '').toLowerCase().includes(q)
+        const inCategorySlug = (b.category?.slug || '').toLowerCase().includes(q)
+        const inProducts = b.products?.some(p =>
           p.name.toLowerCase().includes(q) ||
           (p.description || '').toLowerCase().includes(q)
-        ) ?? false)
-      )
+        ) ?? false
+        return inName || inDesc || inCity || inCategoryName || inCategorySlug || inProducts
+      })
+
+      // ORDENAR por relevancia:
+      // 1. Coincidencia exacta en nombre (prioridad máxima)
+      // 2. Nombre empieza con la búsqueda
+      // 3. Nombre contiene la búsqueda
+      // 4. Premium primero
+      // 5. Destacados primero
+      // 6. Por nombre alfabético
+      matches.sort((a, b) => {
+        const aName = a.name.toLowerCase()
+        const bName = b.name.toLowerCase()
+
+        // Coincidencia exacta
+        if (aName === q && bName !== q) return -1
+        if (bName === q && aName !== q) return 1
+
+        // Empieza con la búsqueda
+        const aStarts = aName.startsWith(q)
+        const bStarts = bName.startsWith(q)
+        if (aStarts && !bStarts) return -1
+        if (bStarts && !aStarts) return 1
+
+        // Nombre contiene la búsqueda
+        const aIncludes = aName.includes(q)
+        const bIncludes = bName.includes(q)
+        if (aIncludes && !bIncludes) return -1
+        if (bIncludes && !aIncludes) return 1
+
+        // Premium primero
+        if (a.plan === 'premium' && b.plan !== 'premium') return -1
+        if (b.plan === 'premium' && a.plan !== 'premium') return 1
+
+        // Destacados primero
+        if (a.featured && !b.featured) return -1
+        if (b.featured && !a.featured) return 1
+
+        // Alfabético
+        return aName.localeCompare(bName)
+      })
+
+      result = matches
     }
     return { businesses: [...result] }
   },

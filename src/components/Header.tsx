@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
-import { Search, Store, Menu, X } from 'lucide-react'
-import { useState, useEffect } from 'react'
+import { Store, Menu, X } from 'lucide-react'
+import { useState } from 'react'
 
 interface HeaderProps {
   onSearch?: (q: string) => void
@@ -10,20 +10,8 @@ interface HeaderProps {
   initialQuery?: string
 }
 
-export function Header({ onSearch, onGoHome, onGoAdmin, initialQuery = '' }: HeaderProps) {
-  const [q, setQ] = useState(initialQuery)
+export function Header({ onGoHome, onGoAdmin }: HeaderProps) {
   const [mobileOpen, setMobileOpen] = useState(false)
-
-  // Sincroniza el estado del input con el query global
-  useEffect(() => {
-    setQ(initialQuery)
-  }, [initialQuery])
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    onSearch?.(q)
-    setMobileOpen(false)
-  }
 
   return (
     <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-xl border-b border-slate-200/70">
@@ -39,37 +27,7 @@ export function Header({ onSearch, onGoHome, onGoAdmin, initialQuery = '' }: Hea
             </span>
           </button>
 
-          {/* Buscador desktop - SÓLO UNO, FUNCIONAL */}
-          {onSearch && (
-            <form
-              onSubmit={handleSubmit}
-              className="flex-1 max-w-2xl hidden md:flex items-center gap-2"
-              role="search"
-            >
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                <input
-                  type="text"
-                  value={q}
-                  onChange={(e) => {
-                    setQ(e.target.value)
-                    onSearch?.(e.target.value) // búsqueda en tiempo real
-                  }}
-                  placeholder="Buscar negocios, productos, categoría..."
-                  className="w-full pl-10 pr-4 py-2.5 bg-slate-100/80 rounded-xl text-sm font-medium border border-transparent focus:border-pink-300 focus:bg-white focus:ring-2 focus:ring-pink-100 outline-none transition-all"
-                  aria-label="Buscar"
-                />
-              </div>
-              <button
-                type="submit"
-                className="px-4 py-2.5 gradient-brand text-white rounded-xl text-sm font-bold hover:opacity-90 transition-opacity whitespace-nowrap"
-              >
-                Buscar
-              </button>
-            </form>
-          )}
-
-          <div className="flex-1 md:flex-none" />
+          <div className="flex-1" />
 
           {/* Nav desktop */}
           <nav className="hidden md:flex items-center gap-2">
@@ -97,37 +55,9 @@ export function Header({ onSearch, onGoHome, onGoAdmin, initialQuery = '' }: Hea
           </button>
         </div>
 
-        {/* Mobile search + menu */}
+        {/* Mobile menu */}
         {mobileOpen && (
           <div className="md:hidden pb-4 space-y-3">
-            {onSearch && (
-              <form
-                onSubmit={handleSubmit}
-                className="flex items-center gap-2"
-                role="search"
-              >
-                <div className="relative flex-1">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-                  <input
-                    type="text"
-                    value={q}
-                    onChange={(e) => {
-                      setQ(e.target.value)
-                      onSearch?.(e.target.value)
-                    }}
-                    placeholder="Buscar..."
-                    className="w-full pl-10 pr-4 py-2.5 bg-slate-100 rounded-xl text-sm font-medium outline-none"
-                    aria-label="Buscar"
-                  />
-                </div>
-                <button
-                  type="submit"
-                  className="px-4 py-2.5 gradient-brand text-white rounded-xl text-sm font-bold"
-                >
-                  Ir
-                </button>
-              </form>
-            )}
             <div className="flex gap-2">
               <button
                 onClick={() => { onGoHome(); setMobileOpen(false) }}
@@ -148,3 +78,4 @@ export function Header({ onSearch, onGoHome, onGoAdmin, initialQuery = '' }: Hea
     </header>
   )
 }
+
