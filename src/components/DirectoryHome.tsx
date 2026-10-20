@@ -83,13 +83,14 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
               {stats.businesses} negocios activos · {stats.products} productos
             </span>
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
-              Descubre los mejores
+              Descubre, comparte
               <br />
-              <span className="gradient-text">negocios locales</span> en un solo lugar
+              <span className="gradient-text">negocios locales</span> del centro de silao
             </h1>
             <p className="mt-5 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-              Cada negocio tiene su propia URL para compartir. Cuando lo veas en Facebook,
-              TikTok o WhatsApp, encontrarás su catálogo completo y otros negocios por descubrir.
+              Encuentra negocios, explora sus productos y comparte sus páginas con tus amigos
+              por WhatsApp, Facebook, TikTok e Instagram.
+              
             </p>
 
             {/* Search hero */}
@@ -103,7 +104,7 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
                   type="text"
                   value={query}
                   onChange={(e) => { setQuery(e.target.value); onSearchChange?.(e.target.value) }}
-                  placeholder="Busca un negocio, rubro o ciudad..."
+                  placeholder="Busca un negocio, producto o servicio..."
                   className="w-full pl-12 pr-32 py-4 bg-white rounded-2xl text-sm font-medium shadow-card border border-slate-100 focus:ring-4 focus:ring-pink-100 outline-none"
                 />
                 <button
