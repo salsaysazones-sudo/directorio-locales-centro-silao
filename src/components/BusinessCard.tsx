@@ -20,7 +20,9 @@ export function BusinessCard({ business, onClick, index = 0 }: BusinessCardProps
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: Math.min(index * 0.05, 0.4) }}
       whileHover={{ y: -4 }}
-      className="group text-left bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-shadow border border-slate-100"
+      className={`group text-left bg-white rounded-2xl overflow-hidden shadow-card hover:shadow-card-hover transition-shadow border ${
+        business.plan === 'premium' ? 'border-pink-200 ring-2 ring-pink-100' : 'border-slate-100'
+      } relative`}
     >
       {/* Cover */}
       <div className="relative h-40 overflow-hidden">
@@ -33,7 +35,12 @@ export function BusinessCard({ business, onClick, index = 0 }: BusinessCardProps
             loading="lazy"
           />
         ) : null}
-        {business.featured && (
+        {business.plan === 'premium' && (
+          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white gradient-brand shadow-sm z-10">
+            ✦ Premium
+          </span>
+        )}
+        {business.featured && business.plan !== 'premium' && (
           <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[11px] font-bold text-white shadow-sm" style={{ background: color }}>
             ⭐ Destacado
           </span>

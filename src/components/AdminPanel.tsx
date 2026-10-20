@@ -26,6 +26,7 @@ import {
   AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle,
 } from '@/components/ui/alert-dialog'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { DownloadAllQrs } from './DownloadAllQrs'
 
 interface AdminPanelProps {
   onOpenBusiness: (slug: string) => void
@@ -109,7 +110,15 @@ function AdminDashboard({
   const [confirmReseed, setConfirmReseed] = useState(false)
   const [reseedLoading, setReseedLoading] = useState(false)
   const [exportLoading, setExportLoading] = useState(false)
+  const [publicBaseUrl, setPublicBaseUrl] = useState('')
   const { toast } = useToast()
+
+  // Cargar URL pública guardada en localStorage
+  useEffect(() => {
+    const saved = typeof window !== 'undefined' ? localStorage.getItem('plaza-sv-public-url') : ''
+    if (saved) setPublicBaseUrl(saved)
+    else if (typeof window !== 'undefined') setPublicBaseUrl(window.location.origin)
+  }, [])
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -217,11 +226,38 @@ function AdminDashboard({
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
         <StatCard icon={<Store className="w-4 h-4" />} label="Total" value={stats.total} color="#FF6B35" />
         <StatCard icon={<Star className="w-4 h-4" />} label="Destacados" value={stats.featured} color="#EC4899" />
         <StatCard icon={<ShieldCheck className="w-4 h-4" />} label="Activos" value={stats.active} color="#10B981" />
         <StatCard icon={<Package className="w-4 h-4" />} label="Productos" value={stats.products} color="#8B5CF6" />
+      </div>
+
+      {/* Kit de promoción */}
+      <div className="mb-6 p-4 bg-gradient-to-r from-pink-50 via-purple-50 to-orange-50 rounded-2xl border border-pink-100">
+        <div className="flex flex-col sm:flex-row sm:items-end gap-3">
+          <div className="flex-1">
+            <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500 block mb-1">
+              URL pública del directorio (para QRs)
+            </label>
+            <input
+              type="url"
+              value={publicBaseUrl}
+              onChange={(e) => {
+                setPublicBaseUrl(e.target.value)
+                if (typeof window !== 'undefined') {
+                  localStorage.setItem('plaza-sv-public-url', e.target.value)
+                }
+              }}
+              placeholder="https://midirectorio.com"
+              className="w-full px-3 py-2 bg-white rounded-lg text-sm font-mono border border-pink-100 focus:border-pink-300 focus:ring-2 focus:ring-pink-100 outline-none"
+            />
+            <p className="text-[11px] text-slate-500 mt-1">
+              Usa la URL real de tu sitio deployado en Cloudflare para que los QRs apunten al lugar correcto.
+            </p>
+          </div>
+          <DownloadAllQrs businesses={businesses} publicBaseUrl={publicBaseUrl} token={token} />
+        </div>
       </div>
 
       {/* Buscador */}
@@ -245,15 +281,16 @@ function AdminDashboard({
                 <th className="text-left px-4 py-3 font-bold text-slate-600 text-xs uppercase tracking-wider hidden sm:table-cell">Categoría</th>
                 <th className="text-left px-4 py-3 font-bold text-slate-600 text-xs uppercase tracking-wider hidden md:table-cell">Ciudad</th>
                 <th className="text-center px-4 py-3 font-bold text-slate-600 text-xs uppercase tracking-wider">Productos</th>
+                <th className="text-center px-4 py-3 font-bold text-slate-600 text-xs uppercase tracking-wider hidden md:table-cell">Plan</th>
                 <th className="text-center px-4 py-3 font-bold text-slate-600 text-xs uppercase tracking-wider hidden lg:table-cell">Estado</th>
                 <th className="text-right px-4 py-3 font-bold text-slate-600 text-xs uppercase tracking-wider">Acciones</th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
-                <tr><td colSpan={6} className="text-center py-10 text-slate-400">Cargando...</td></tr>
+                <tr><td colSpan={7} className="text-center py-10 text-slate-400">Cargando...</td></tr>
               ) : filtered.length === 0 ? (
-                <tr><td colSpan={6} className="text-center py-10 text-slate-400">No se encontraron negocios.</td></tr>
+                <tr><td colSpan={7} className="text-center py-10 text-slate-400">No se encontraron negocios.</td></tr>
               ) : filtered.map((b) => {
                 const cat = categories.find((c) => c.id === b.categoryId)
                 const color = cat?.color || '#FF6B35'
@@ -282,6 +319,17 @@ function AdminDashboard({
                     </td>
                     <td className="px-4 py-3 hidden md:table-cell text-slate-600 text-xs">{b.city || '—'}</td>
                     <td className="px-4 py-3 text-center font-semibold text-slate-700">{b._count?.products || 0}</td>
+                    <td className="px-4 py-3 text-center hidden md:table-cell">
+                      {b.plan === 'premium' ? (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold text-white gradient-brand">
+                          ✦ Premium
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold bg-slate-100 text-slate-600">
+                          Gratis
+                        </span>
+                      )}
+                    </td>
                     <td className="px-4 py-3 text-center hidden lg:table-cell">
                       <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-semibold ${b.active ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>
                         <span className={`w-1.5 h-1.5 rounded-full ${b.active ? 'bg-emerald-500' : 'bg-slate-400'}`} />
@@ -429,7 +477,7 @@ function BusinessFormDialog({
     name: '', slug: '', description: '', logo: '', cover: '',
     phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
     facebook: '', instagram: '', tiktok: '', website: '',
-    featured: false, active: true, categoryId: '',
+    featured: false, active: true, plan: 'gratis' as 'gratis' | 'premium', categoryId: '',
   })
 
   useEffect(() => {
@@ -441,14 +489,16 @@ function BusinessFormDialog({
         address: business.address || '', city: business.city || '', hours: business.hours || '',
         facebook: business.facebook || '', instagram: business.instagram || '',
         tiktok: business.tiktok || '', website: business.website || '',
-        featured: business.featured, active: business.active, categoryId: business.categoryId,
+        featured: business.featured, active: business.active,
+        plan: (business.plan as 'gratis' | 'premium') || 'gratis', categoryId: business.categoryId,
       })
     } else {
       setForm({
         name: '', slug: '', description: '', logo: '', cover: '',
         phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
         facebook: '', instagram: '', tiktok: '', website: '',
-        featured: false, active: true, categoryId: categories[0]?.id || '',
+        featured: false, active: true, plan: 'gratis' as 'gratis' | 'premium',
+        categoryId: categories[0]?.id || '',
       })
     }
   }, [business, categories, open])
@@ -535,6 +585,10 @@ function BusinessFormDialog({
             </div>
             <div className="flex items-center gap-4 pt-2">
               <label className="flex items-center gap-2 cursor-pointer">
+                <Switch checked={form.plan === 'premium'} onCheckedChange={(v) => setForm({ ...form, plan: v ? 'premium' : 'gratis' })} />
+                <span className="text-sm font-semibold">✦ Premium</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
                 <Switch checked={form.featured} onCheckedChange={(v) => setForm({ ...form, featured: v })} />
                 <span className="text-sm font-semibold">⭐ Destacado</span>
               </label>
@@ -543,6 +597,11 @@ function BusinessFormDialog({
                 <span className="text-sm font-semibold">✅ Activo</span>
               </label>
             </div>
+            {form.plan === 'premium' && (
+              <div className="mt-3 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl border border-pink-100 text-xs text-slate-600">
+                <strong className="text-pink-700">✦ Plan Premium activo:</strong> el negocio se mostrará con badge premium, borde destacado en grid y prioridad en orden.
+              </div>
+            )}
           </TabsContent>
 
           <TabsContent value="contact" className="space-y-3 mt-4">

@@ -10,6 +10,7 @@ import type { Business, Category, Product } from '@/lib/types'
 import { ProductCard } from './ProductCard'
 import { BusinessCard } from './BusinessCard'
 import { WhatsAppButton } from './WhatsAppButton'
+import { PromotionKit } from './PromotionKit'
 import { useToast } from '@/hooks/use-toast'
 
 interface BusinessDetailProps {
@@ -88,6 +89,9 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
 
   const cat = business.category
   const color = cat?.color || '#FF6B35'
+  const publicUrl = typeof window !== 'undefined'
+    ? `${window.location.origin}/?b=${business.slug}`
+    : `/?b=${business.slug}`
 
   const whatsappHref = business.whatsapp
     ? `https://wa.me/${business.whatsapp}?text=${encodeURIComponent(`¡Hola ${business.name}! 😊 Vi su catálogo en Plaza SV y me gustaría más información.`)}`
@@ -157,11 +161,18 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
             <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
               {business.name}
             </h1>
-            {business.featured && (
-              <span className="inline-flex items-center gap-1 mt-1 text-xs font-bold text-amber-600">
-                ⭐ Negocio destacado
-              </span>
-            )}
+            <div className="flex flex-wrap items-center gap-2 mt-1">
+              {business.plan === 'premium' && (
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold text-white gradient-brand shadow-sm">
+                  ✦ Premium
+                </span>
+              )}
+              {business.featured && (
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-amber-600">
+                  ⭐ Negocio destacado
+                </span>
+              )}
+            </div>
           </div>
 
           {/* WhatsApp CTA */}
@@ -248,6 +259,9 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
           </div>
         )}
       </section>
+
+      {/* Kit de promoción */}
+      <PromotionKit business={business} publicUrl={publicUrl} />
 
       {/* Recomendaciones */}
       {recommendations.length > 0 && (

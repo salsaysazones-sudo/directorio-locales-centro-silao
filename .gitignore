@@ -64,3 +64,4 @@ db/*.db-journal
 
 # worklog interno (opcional - comenta la línea si quieres commitearlo)
 worklog.md
+download/

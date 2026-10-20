@@ -26,6 +26,7 @@ type BusinessSeed = {
   tiktok?: string
   website?: string
   featured?: boolean
+  plan?: 'gratis' | 'premium'
   categorySlug: string
   products: { name: string; description?: string; price: number; image: string; tag?: string }[]
 }
@@ -50,6 +51,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/donarosa',
     instagram: 'https://instagram.com/donarosa',
     featured: true,
+    plan: "premium",
     categorySlug: 'restaurantes',
     products: [
       { name: 'Tamal de elote con crema', description: 'Tamal dulce de elote fresco servido con crema artesanal.', price: 3.5, image: img('tamal-elote'), tag: 'Especialidad' },
@@ -72,6 +74,7 @@ const businesses: BusinessSeed[] = [
     hours: 'Mar-Dom 12:00 PM - 11:00 PM',
     instagram: 'https://instagram.com/bellanapoli',
     featured: true,
+    plan: "premium",
     categorySlug: 'restaurantes',
     products: [
       { name: 'Pizza Margherita (mediana)', description: 'Salsa de tomate San Marzano, mozzarella fresca, albahaca.', price: 9.5, image: img('pizza-margherita'), tag: 'Clásica' },
@@ -116,6 +119,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/burgertown',
     tiktok: 'https://tiktok.com/@burgertown',
     featured: true,
+    plan: "premium",
     categorySlug: 'restaurantes',
     products: [
       { name: 'Burger Clásica', description: 'Carne 150g, queso cheddar, lechuga, tomate y salsa casa.', price: 6.5, image: img('burger-clasica'), tag: 'Top' },
@@ -162,6 +166,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/bellaimagen',
     instagram: 'https://instagram.com/bellaimagen',
     featured: true,
+    plan: "premium",
     categorySlug: 'belleza',
     products: [
       { name: 'Corte de cabello mujer', description: 'Corte profesional + lavado + peinado.', price: 18.0, image: img('corte-mujer') },
@@ -206,6 +211,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/elnavaja',
     tiktok: 'https://tiktok.com/@elnavaja',
     featured: true,
+    plan: "premium",
     categorySlug: 'belleza',
     products: [
       { name: 'Corte degradado', description: 'Fade profesional con máquina y tijera.', price: 10.0, image: img('corte-degradado'), tag: 'Top' },
@@ -252,6 +258,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/boutiqueaurora',
     instagram: 'https://instagram.com/boutiqueaurora',
     featured: true,
+    plan: "premium",
     categorySlug: 'tiendas',
     products: [
       { name: 'Vestido de fiesta largo', description: 'Vestido elegante con detalles en pedrería.', price: 85.0, image: img('vestido-fiesta'), tag: 'Nuevo' },
@@ -275,6 +282,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/techstoresv',
     tiktok: 'https://tiktok.com/@techstoresv',
     featured: true,
+    plan: "premium",
     categorySlug: 'tiendas',
     products: [
       { name: 'Audífonos bluetooth', description: 'Cancelación de ruido y 30h batería.', price: 45.0, image: img('audifonos-bluetooth'), tag: 'Top' },
@@ -341,6 +349,7 @@ const businesses: BusinessSeed[] = [
     hours: 'Lun-Sáb 8:00 AM - 6:00 PM',
     facebook: 'https://facebook.com/electricidadprosv',
     featured: true,
+    plan: "premium",
     categorySlug: 'servicios',
     products: [
       { name: 'Visita técnica + diagnóstico', description: 'Evaluación y presupuesto en sitio.', price: 15.0, image: img('visita-tecnica') },
@@ -385,6 +394,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/limpiezahogarsv',
     instagram: 'https://instagram.com/limpiezahogarsv',
     featured: true,
+    plan: "premium",
     categorySlug: 'servicios',
     products: [
       { name: 'Limpieza profunda (3 horas)', description: 'Equipo de 2 personas + insumos.', price: 55.0, image: img('limpieza-profunda'), tag: 'Top' },
@@ -431,6 +441,7 @@ const businesses: BusinessSeed[] = [
     facebook: 'https://facebook.com/farmaciavida',
     instagram: 'https://instagram.com/farmaciavida',
     featured: true,
+    plan: "premium",
     categorySlug: 'salud',
     products: [
       { name: 'Té detox hierbas', description: 'Mezcla depurativa de 15 hierbas.', price: 12.0, image: img('te-detox') },

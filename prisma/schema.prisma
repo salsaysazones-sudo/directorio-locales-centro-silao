@@ -38,6 +38,7 @@ model Business {
   website     String?
   featured    Boolean   @default(false)
   active      Boolean   @default(true)
+  plan        String    @default("gratis") // "gratis" | "premium"
   categoryId  String
   category    Category  @relation(fields: [categoryId], references: [id])
   products    Product[]
