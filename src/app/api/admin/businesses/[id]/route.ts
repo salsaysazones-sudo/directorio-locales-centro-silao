@@ -40,7 +40,7 @@ export async function PUT(
   try {
     const { id } = await params
     const body = await req.json()
-    const { name, slug, description, logo, cover, phone, whatsapp, email, address, city, hours, facebook, instagram, tiktok, website, featured, active, plan, categoryId } = body
+    const { name, slug, description, logo, cover, phone, whatsapp, email, address, city, hours, facebook, instagram, tiktok, website, featured, active, hidden, plan, categoryId } = body
 
     if (!name || !slug || !categoryId) {
       return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 })
@@ -71,6 +71,7 @@ export async function PUT(
         website: website || null,
         featured: Boolean(featured),
         active: active !== undefined ? Boolean(active) : true,
+        hidden: hidden !== undefined ? Boolean(hidden) : false,
         plan: plan === 'premium' ? 'premium' : 'gratis',
         categoryId,
       },

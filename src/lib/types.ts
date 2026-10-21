@@ -37,6 +37,7 @@ export type Business = {
   website: string | null
   featured: boolean
   active: boolean
+  hidden: boolean
   plan: 'gratis' | 'premium'
   categoryId: string
   category?: Category

@@ -26,6 +26,7 @@ type BusinessSeed = {
   tiktok?: string
   website?: string
   featured?: boolean
+  hidden?: boolean // true = oculto del directorio público
   plan?: 'gratis' | 'premium'
   categorySlug: string
   products: { name: string; description?: string; price: number; image: string; tag?: string }[]

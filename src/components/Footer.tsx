@@ -43,7 +43,6 @@ export function Footer({ onGoHome, onGoAdmin, stats }: FooterProps) {
             <h4 className="text-sm font-semibold text-white mb-3">Navegación</h4>
             <ul className="space-y-2 text-sm">
               <li><button onClick={onGoHome} className="hover:text-white transition-colors">Explorar negocios</button></li>
-              <li><button onClick={onGoAdmin} className="hover:text-white transition-colors">Panel de administración</button></li>
             </ul>
           </div>
 

@@ -109,12 +109,12 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
         Volver al directorio
       </button>
 
-      {/* Cover */}
+      {/* Cover - foto panorámica arriba */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="relative h-48 sm:h-72 rounded-3xl overflow-hidden shadow-card mb-0"
+        className="relative h-48 sm:h-64 rounded-3xl overflow-hidden shadow-card"
       >
         {business.cover && (
           <SmartImage
@@ -126,7 +126,7 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
             fallbackHeight={600}
           />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
         <div className="absolute top-4 right-4 flex gap-2">
           <button
             onClick={handleShare}
@@ -138,12 +138,12 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
         </div>
       </motion.div>
 
-      {/* Header info */}
-      <div className="bg-white rounded-b-3xl shadow-card border border-t-0 border-slate-100 px-5 sm:px-8 pb-6 pt-0 -mt-1">
-        <div className="flex flex-col sm:flex-row sm:items-end gap-4 sm:gap-6 -mt-12 sm:-mt-14">
+      {/* Header info - DESPUÉS del cover, sin overlap */}
+      <div className="bg-white rounded-3xl shadow-card border border-slate-100 px-5 sm:px-8 py-6 mt-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-5">
           {/* Logo */}
           <div
-            className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 border-4 border-white shadow-card bg-white"
+            className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden shrink-0 border-2 border-white shadow-card bg-white"
             style={{ boxShadow: `0 0 0 2px ${color}30` }}
           >
             {business.logo ? (
@@ -162,7 +162,8 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
             )}
           </div>
 
-          <div className="flex-1 pt-3 sm:pt-0 sm:pb-2">
+          {/* Nombre + badges */}
+          <div className="flex-1 min-w-0">
             {cat && (
               <a
                 href={`/?category=${cat.id}`}
@@ -173,10 +174,10 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
                 {cat.name}
               </a>
             )}
-            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+            <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight break-words">
               {business.name}
             </h1>
-            <div className="flex flex-wrap items-center gap-2 mt-1">
+            <div className="flex flex-wrap items-center gap-2 mt-2">
               {business.plan === 'premium' && (
                 <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-bold text-white gradient-brand shadow-sm">
                   ✦ Premium
@@ -196,7 +197,7 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-glow"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-glow shrink-0"
               style={{ background: '#25D366' }}
             >
               <MessageCircle className="w-4 h-4 fill-white/20" />

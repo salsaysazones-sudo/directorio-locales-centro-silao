@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   LogOut, Plus, Edit3, Trash2, X, Store, Package, Search,
   ExternalLink, Star, RefreshCw, Lock, ShieldCheck, ChevronDown,
-  Save, AlertCircle, LayoutGrid, Rocket, FileJson,
+  Save, AlertCircle, LayoutGrid, Rocket, FileJson, Eye, EyeOff,
 } from 'lucide-react'
 import { api, ADMIN_TOKEN_DEFAULT } from '@/lib/api'
 import type { Business, Category, Product } from '@/lib/types'
@@ -302,7 +302,8 @@ function AdminDashboard({
                           {b.logo && <img src={b.logo} alt={b.name} className="w-full h-full object-cover" />}
                         </div>
                         <div className="min-w-0">
-                          <div className="font-semibold text-slate-900 truncate flex items-center gap-1">
+                          <div className={`font-semibold truncate flex items-center gap-1 ${b.hidden ? 'text-amber-600' : 'text-slate-900'}`}>
+                            {b.hidden && <EyeOff className="w-3 h-3 shrink-0" />}
                             {b.name}
                             {b.featured && <Star className="w-3 h-3 fill-amber-400 text-amber-400" />}
                           </div>
@@ -358,6 +359,26 @@ function AdminDashboard({
                           title="Editar"
                         >
                           <Edit3 className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={async () => {
+                            try {
+                              await api.adminUpdateBusiness(token, b.id, { ...b, hidden: !b.hidden })
+                              toast({
+                                title: b.hidden ? '👁️ Negocio visible' : '🙈 Negocio oculto',
+                                description: b.hidden
+                                  ? `${b.name} ahora aparece en el directorio público`
+                                  : `${b.name} ya no aparece en el directorio público`,
+                              })
+                              load()
+                            } catch (e) {
+                              toast({ title: 'Error', description: 'No se pudo cambiar visibilidad.', variant: 'destructive' })
+                            }
+                          }}
+                          className={`p-1.5 rounded-lg ${b.hidden ? 'text-amber-600 bg-amber-50 hover:bg-amber-100' : 'text-slate-400 hover:bg-slate-100'}`}
+                          title={b.hidden ? 'Mostrar en directorio' : 'Ocultar del directorio público'}
+                        >
+                          {b.hidden ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </button>
                         <button
                           onClick={() => setDeleting(b)}
@@ -477,7 +498,7 @@ function BusinessFormDialog({
     name: '', slug: '', description: '', logo: '', cover: '',
     phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
     facebook: '', instagram: '', tiktok: '', website: '',
-    featured: false, active: true, plan: 'gratis' as 'gratis' | 'premium', categoryId: '',
+    featured: false, active: true, hidden: false, plan: 'gratis' as 'gratis' | 'premium', categoryId: '',
   })
 
   useEffect(() => {
@@ -490,6 +511,7 @@ function BusinessFormDialog({
         facebook: business.facebook || '', instagram: business.instagram || '',
         tiktok: business.tiktok || '', website: business.website || '',
         featured: business.featured, active: business.active,
+        hidden: (business as Business).hidden ?? false,
         plan: (business.plan as 'gratis' | 'premium') || 'gratis', categoryId: business.categoryId,
       })
     } else {
@@ -497,7 +519,7 @@ function BusinessFormDialog({
         name: '', slug: '', description: '', logo: '', cover: '',
         phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
         facebook: '', instagram: '', tiktok: '', website: '',
-        featured: false, active: true, plan: 'gratis' as 'gratis' | 'premium',
+        featured: false, active: true, hidden: false, plan: 'gratis' as 'gratis' | 'premium',
         categoryId: categories[0]?.id || '',
       })
     }
@@ -596,7 +618,16 @@ function BusinessFormDialog({
                 <Switch checked={form.active} onCheckedChange={(v) => setForm({ ...form, active: v })} />
                 <span className="text-sm font-semibold">✅ Activo</span>
               </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <Switch checked={form.hidden} onCheckedChange={(v) => setForm({ ...form, hidden: v })} />
+                <span className="text-sm font-semibold">🙈 Oculto</span>
+              </label>
             </div>
+            {form.hidden && (
+              <div className="mt-3 p-3 bg-amber-50 rounded-xl border border-amber-100 text-xs text-slate-600">
+                <strong className="text-amber-700">🙈 Negocio oculto:</strong> no aparecerá en el directorio público (home, búsqueda, categorías). Útil para mantener negocios demo que aún no son reales sin borrarlos.
+              </div>
+            )}
             {form.plan === 'premium' && (
               <div className="mt-3 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl border border-pink-100 text-xs text-slate-600">
                 <strong className="text-pink-700">✦ Plan Premium activo:</strong> el negocio se mostrará con badge premium, borde destacado en grid y prioridad en orden.

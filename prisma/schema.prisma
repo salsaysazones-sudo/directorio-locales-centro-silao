@@ -38,6 +38,7 @@ model Business {
   website     String?
   featured    Boolean   @default(false)
   active      Boolean   @default(true)
+  hidden      Boolean   @default(false) // oculto del directorio público (demo en espera)
   plan        String    @default("gratis") // "gratis" | "premium"
   categoryId  String
   category    Category  @relation(fields: [categoryId], references: [id])

@@ -56,9 +56,10 @@ async function main() {
   })
 
   // 3. Lista de negocios (incluye productos para búsqueda en cliente)
+  // Excluye los marcados como hidden (demo ocultos)
   console.log('🏪 Lista de negocios...')
   const businesses = await db.business.findMany({
-    where: { active: true },
+    where: { active: true, hidden: false },
     include: {
       category: true,
       _count: { select: { products: true } },
