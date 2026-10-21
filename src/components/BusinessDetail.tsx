@@ -13,6 +13,7 @@ import { WhatsAppButton } from './WhatsAppButton'
 import { PromotionKit } from './PromotionKit'
 import { SmartImage } from './SmartImage'
 import { ViewCounter } from './ViewCounter'
+import { trackEvent } from './GoogleAnalytics'
 import { useToast } from '@/hooks/use-toast'
 
 interface BusinessDetailProps {
@@ -52,6 +53,12 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
       ])
       setBusiness(biz.business)
       setRecommendations(recs.recommendations)
+      // Track view in Google Analytics
+      trackEvent('view_business', {
+        business_slug: slug,
+        business_name: biz.business.name,
+        category: biz.business.category?.name,
+      })
     } catch (e) {
       console.error(e)
       setNotFound(true)
@@ -64,6 +71,10 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
 
   const handleShare = async () => {
     const url = typeof window !== 'undefined' ? `${window.location.origin}/?b=${slug}` : ''
+    trackEvent('share_business', {
+      business_slug: slug,
+      business_name: business?.name,
+    })
     try {
       if (navigator.share) {
         await navigator.share({ title: business?.name, url })
@@ -212,6 +223,11 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
               href={whatsappHref}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent('click_whatsapp', {
+                business_slug: business.slug,
+                business_name: business.name,
+                source: 'detail_button',
+              })}
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-2xl text-white font-bold text-sm hover:opacity-90 transition-opacity shadow-glow shrink-0"
               style={{ background: '#25D366' }}
             >
@@ -325,7 +341,7 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
 
       {/* WhatsApp flotante */}
       {business.whatsapp && (
-        <WhatsAppButton phone={business.whatsapp} businessName={business.name} />
+        <WhatsAppButton phone={business.whatsapp} businessName={business.name} businessSlug={business.slug} />
       )}
 
       {/* Contador de visitas (local, por dispositivo) */}

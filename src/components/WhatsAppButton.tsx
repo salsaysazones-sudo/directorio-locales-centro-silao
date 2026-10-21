@@ -1,14 +1,16 @@
 'use client'
 import { MessageCircle, X } from 'lucide-react'
 import { useState } from 'react'
+import { trackEvent } from './GoogleAnalytics'
 
 interface WhatsAppButtonProps {
   phone: string
   businessName: string
   color?: string
+  businessSlug?: string
 }
 
-export function WhatsAppButton({ phone, businessName, color = '#25D366' }: WhatsAppButtonProps) {
+export function WhatsAppButton({ phone, businessName, color = '#25D366', businessSlug }: WhatsAppButtonProps) {
   const [open, setOpen] = useState(false)
 
   const message = encodeURIComponent(`¡Hola ${businessName}! 😊 Vi su catálogo en el Directorio de Silao y me gustaría más información.`)
@@ -31,6 +33,11 @@ export function WhatsAppButton({ phone, businessName, color = '#25D366' }: Whats
             href={href}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent('click_whatsapp', {
+              business_slug: businessSlug || businessName,
+              business_name: businessName,
+              source: 'floating_button',
+            })}
             className="block w-full text-center px-4 py-2.5 rounded-xl font-semibold text-white text-sm hover:opacity-90 transition-opacity"
             style={{ background: color }}
           >

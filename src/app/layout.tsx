@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 
 export const metadata: Metadata = {
   title: "Directorio Locales Centro Silao · Comercios de Silao, Guanajuato",
@@ -43,6 +44,7 @@ export default function RootLayout({
       >
         {children}
         <Toaster />
+        <GoogleAnalytics />
       </body>
     </html>
   );

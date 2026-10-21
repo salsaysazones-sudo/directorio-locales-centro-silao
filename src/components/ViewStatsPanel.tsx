@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { Eye, TrendingUp, BarChart3, RefreshCw, ArrowLeft } from 'lucide-react'
+import { Eye, TrendingUp, BarChart3, RefreshCw, ArrowLeft, ExternalLink } from 'lucide-react'
 import type { Business } from '@/lib/types'
 
 interface ViewStatsPanelProps {
@@ -184,13 +184,20 @@ export function ViewStatsPanel({ onBack, onOpenBusiness }: ViewStatsPanelProps) 
 
       {/* Nota informativa */}
       <div className="mt-6 p-4 bg-amber-50 rounded-2xl border border-amber-100">
-        <p className="text-xs text-amber-800 leading-relaxed">
-          <strong>ℹ️ Nota importante:</strong> estas estadísticas solo cuentan las visitas hechas
-          desde <strong>este dispositivo y navegador</strong>. Como tu sitio es estático (gratis en Cloudflare),
-          no hay un servidor que registre todas las visitas globales.
-          Para un conteo real necesitarías un servicio como Google Analytics (gratis) o Plausible Analytics.
-          Si quieres que lo agregue, dime y lo configuro.
+        <p className="text-xs text-amber-800 leading-relaxed mb-3">
+          <strong>ℹ️ Nota:</strong> las estadísticas de arriba solo cuentan las visitas hechas
+          desde <strong>este dispositivo y navegador</strong>. Para ver estadísticas globales
+          (todos los visitantes), usa Google Analytics:
         </p>
+        <a
+          href="https://analytics.google.com/analytics/web/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 px-4 py-2 bg-white text-pink-600 rounded-xl text-xs font-bold hover:bg-pink-50 transition-colors border border-pink-200"
+        >
+          <ExternalLink className="w-3.5 h-3.5" />
+          Abrir Google Analytics
+        </a>
       </div>
     </div>
   )

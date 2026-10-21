@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, ZoomIn } from 'lucide-react'
 import { SmartImage } from './SmartImage'
+import { trackEvent } from './GoogleAnalytics'
 import type { Product } from '@/lib/types'
 
 interface ProductCardProps {
@@ -33,7 +34,16 @@ export function ProductCard({ product, businessName, businessColor = '#FF6B35', 
     }
   }, [modalOpen])
 
-  const openModal = useCallback(() => setModalOpen(true), [])
+  const openModal = useCallback(() => {
+    setModalOpen(true)
+    trackEvent('view_product', {
+      product_id: product.id,
+      product_name: product.name,
+      business_slug: businessSlug,
+      business_name: businessName,
+      price: product.price,
+    })
+  }, [product.id, product.name, product.price, businessSlug, businessName])
   const closeModal = useCallback(() => setModalOpen(false), [])
 
   return (
