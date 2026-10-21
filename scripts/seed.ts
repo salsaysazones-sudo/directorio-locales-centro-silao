@@ -29,7 +29,7 @@ type BusinessSeed = {
   hidden?: boolean // true = oculto del directorio público
   plan?: 'gratis' | 'premium'
   categorySlug: string
-  products: { name: string; description?: string; price: number; image: string; tag?: string }[]
+  products: { name: string; description?: string; price: number; image: string; tag?: string; hidden?: boolean }[]
 }
 
 const img = (seed: string, w = 800, h = 600) =>
@@ -179,20 +179,19 @@ const businesses: BusinessSeed[] = [
     categorySlug: 'restaurantes',
     products: [
       { name: 'Papa rellena con costilla ahumada', description: 'Papa horneada sazonada con mantequilla y queso amarillo líquido, bañada con salsa estilo BBQ. Incluye costilla ahumada. (tocino incluye brócoli).', price: 90, image: localImg('da-bbq-pit', 'papa-costilla'), tag: 'Top' },
-      { name: 'Papa rellena con pulled pork', description: 'Papa horneada con mantequilla, queso amarillo líquido y salsa BBQ. Incluye pulled pork ahumado.', price: 85, image: localImg('da-bbq-pit', 'papa-pulled-pork') },
+      { name: 'Papa rellena con pulled pork', description: 'Papa horneada con mantequilla, queso amarillo líquido y salsa BBQ. Incluye pulled pork ahumado.', price: 85, image: localImg('da-bbq-pit', 'papa-pulled-pork'), hidden: true },
       { name: 'Papa rellena con tocino crujiente', description: 'Papa horneada con mantequilla, queso amarillo líquido, salsa BBQ y tocino crujiente. Incluye brócoli.', price: 85, image: localImg('da-bbq-pit', 'papa-tocino') },
       { name: 'Costilla "La de la Casa" 500g (3 personas)', description: 'Incluye media papa horneada con mantequilla, 2 piezas de pan tostado con mantequilla y ajo, 1 bastón de pepinillo dulce cítrico. Elige salsa: chipotle dulce o mango habanero.', price: 280, image: localImg('da-bbq-pit', 'costilla-casa'), tag: 'Especialidad' },
       { name: 'Costilla 250g (2 personas)', description: 'Con media papa, pan tostado con ajo y pepinillo. Elige salsa: chipotle dulce o mango habanero.', price: 170, image: localImg('da-bbq-pit', 'costilla-250') },
       { name: 'Costilla 125g (1 persona)', description: 'Porción individual con pan tostado con ajo y pepinillo. Elige salsa: chipotle dulce o mango habanero.', price: 99, image: localImg('da-bbq-pit', 'costilla-125') },
       { name: '3 Mini Burgers', description: 'Jugosa carne molida bien sazonada, jitomate fresco, pepinillos, cebolla morada, queso amarillo americano y crujiente tocino, en suave mini bollo.', price: 99, image: localImg('da-bbq-pit', 'mini-burgers-3'), tag: 'Top' },
-      { name: '1 Mini Burger individual', description: 'Carne molida sazonada con jitomate, pepinillos, cebolla morada, queso americano y tocino, en mini bollo.', price: 35, image: localImg('da-bbq-pit', 'mini-burger-1') },
-      { name: 'Mini Burger combinada', description: 'Mini burger con combinación de proteínas al gusto.', price: 99, image: localImg('da-bbq-pit', 'mini-burger-combinada') },
-      { name: '3 Mini Sandwiches de pulled pork', description: 'Jugoso pulled pork servido en mini bollo calientito, acompañado de slaw de manzana.', price: 110, image: localImg('da-bbq-pit', 'mini-sandwiches-3') },
-      { name: '1 Mini Sandwich individual', description: 'Pulled pork en mini bollo con slaw de manzana.', price: 38, image: localImg('da-bbq-pit', 'mini-sandwich-1') },
-      { name: 'Coca Cola 600ml', description: 'Refresco Coca Cola bien frío, 600ml.', price: 30, image: localImg('da-bbq-pit', 'coca-600') },
-      { name: 'Fresca 600ml', description: 'Refresco Fresca bien frío, 600ml.', price: 30, image: localImg('da-bbq-pit', 'fresca-600') },
+      { name: '1 Mini Burger individual', description: 'Carne molida sazonada con jitomate, pepinillos, cebolla morada, queso americano y tocino, en mini bollo.', price: 35, image: localImg('da-bbq-pit', 'mini-burger-1'), hidden: true },
+      { name: 'Mini Burger combinada', description: 'Mini burger con combinación de proteínas al gusto.', price: 99, image: localImg('da-bbq-pit', 'mini-burger-combinada'), hidden: true },
+      { name: '3 Mini Sandwiches de pulled pork', description: 'Jugoso pulled pork servido en mini bollo calientito, acompañado de slaw de manzana.', price: 110, image: localImg('da-bbq-pit', 'mini-sandwiches-3'), hidden: true },
+      { name: '1 Mini Sandwich individual', description: 'Pulled pork en mini bollo con slaw de manzana.', price: 38, image: localImg('da-bbq-pit', 'mini-sandwich-1'), hidden: true },
+      { name: 'Refresco 600ml (Coca Cola o Fresca)', description: 'Refresco bien frío al gusto: Coca Cola o Fresca. 600ml.', price: 30, image: localImg('da-bbq-pit', 'refresco-600') },
       { name: 'Agua fresca de jamaica con té de limón 600ml', description: 'Bebida de la casa: agua fresca de jamaica mezclada con té de limón. Refrescante y natural.', price: 25, image: localImg('da-bbq-pit', 'agua-jamaica'), tag: 'Especialidad' },
-      { name: 'Twinkies ahumados', description: 'Twinkies con un toque ahumado especial. Postre divertido y diferente.', price: 50, image: localImg('da-bbq-pit', 'twenkies'), tag: 'Postre' },
+      { name: 'Twinkies ahumados', description: 'Twinkies con un toque ahumado especial. Postre divertido y diferente.', price: 50, image: localImg('da-bbq-pit', 'twenkies'), tag: 'Postre', hidden: true },
     ],
   },
 
