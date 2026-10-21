@@ -170,6 +170,8 @@ const businesses: BusinessSeed[] = [
     city: 'Silao, Guanajuato',
     hours: 'Jue-Dom 12:00 PM - 9:00 PM (confirmar por WhatsApp)',
     website: 'https://salsaysazones-sudo.github.io/menu-dabbqpit/',
+    facebook: 'https://www.facebook.com/DabbqPit1/',
+    tiktok: 'https://www.tiktok.com/@dabbqpit1',
     featured: true,
     plan: 'premium',
     categorySlug: 'restaurantes',
