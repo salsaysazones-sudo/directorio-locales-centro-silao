@@ -763,12 +763,18 @@ function ProductsManagerDialog({
             </div>
           ) : (
             products.map((p) => (
-              <div key={p.id} className="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-100">
-                <div className="w-12 h-12 rounded-lg overflow-hidden bg-slate-200 shrink-0">
-                  {p.image && <img src={p.image} alt={p.name} className="w-full h-full object-cover" />}
+              <div key={p.id} className={`flex items-center gap-3 p-3 rounded-xl border ${p.hidden ? 'bg-amber-50 border-amber-200' : 'bg-slate-50 border-slate-100'}`}>
+                <div className="w-12 h-12 rounded-lg overflow-hidden bg-slate-200 shrink-0 relative">
+                  {p.image && <img src={p.image} alt={p.name} className={`w-full h-full object-cover ${p.hidden ? 'opacity-50' : ''}`} />}
+                  {p.hidden && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <EyeOff className="w-4 h-4 text-amber-600" />
+                    </div>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-semibold text-sm text-slate-900 truncate flex items-center gap-2">
+                  <div className={`font-semibold text-sm truncate flex items-center gap-2 ${p.hidden ? 'text-amber-700' : 'text-slate-900'}`}>
+                    {p.hidden && <EyeOff className="w-3 h-3 shrink-0" />}
                     {p.name}
                     {p.tag && <span className="text-[10px] px-1.5 py-0.5 rounded-full text-white" style={{ background: cat?.color || '#FF6B35' }}>{p.tag}</span>}
                   </div>
@@ -776,6 +782,24 @@ function ProductsManagerDialog({
                 </div>
                 <div className="font-bold text-sm" style={{ color: cat?.color || '#FF6B35' }}>${p.price.toFixed(2)}</div>
                 <div className="flex gap-1">
+                  <button
+                    onClick={async () => {
+                      try {
+                        await api.adminUpdateProduct(token, p.id, { hidden: !p.hidden })
+                        toast({
+                          title: p.hidden ? '👁️ Producto visible' : '🙈 Producto oculto',
+                          description: p.hidden ? `${p.name} vuelve a aparecer en el catálogo` : `${p.name} ya no aparece (¿agotado?)`,
+                        })
+                        load(); onChanged()
+                      } catch {
+                        toast({ title: 'Error', variant: 'destructive' })
+                      }
+                    }}
+                    className={`p-1.5 rounded ${p.hidden ? 'text-amber-600 bg-amber-100 hover:bg-amber-200' : 'text-slate-400 hover:bg-white'}`}
+                    title={p.hidden ? 'Mostrar en catálogo' : 'Ocultar del catálogo (agotado)'}
+                  >
+                    {p.hidden ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
                   <button onClick={() => setEditing(p)} className="p-1.5 hover:bg-white rounded text-blue-600">
                     <Edit3 className="w-4 h-4" />
                   </button>

@@ -15,6 +15,7 @@ export type Product = {
   price: number
   image: string
   tag: string | null
+  hidden: boolean
   businessId: string
 }
 

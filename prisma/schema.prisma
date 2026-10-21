@@ -54,6 +54,7 @@ model Product {
   price       Float
   image       String
   tag         String?
+  hidden      Boolean  @default(false) // oculto del catálogo público (producto agotado)
   businessId  String
   business    Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
   createdAt   DateTime @default(now())

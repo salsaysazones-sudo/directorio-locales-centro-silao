@@ -17,7 +17,7 @@ export async function PUT(
   try {
     const { id } = await params
     const body = await req.json()
-    const { name, description, price, image, tag } = body
+    const { name, description, price, image, tag, hidden } = body
     const product = await db.product.update({
       where: { id },
       data: {
@@ -26,6 +26,7 @@ export async function PUT(
         price: parseFloat(price),
         image: image || '',
         tag: tag || null,
+        hidden: hidden !== undefined ? Boolean(hidden) : undefined,
       },
     })
     return NextResponse.json({ product })

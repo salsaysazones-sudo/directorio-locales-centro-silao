@@ -192,7 +192,7 @@ const businesses: BusinessSeed[] = [
       { name: 'Coca Cola 600ml', description: 'Refresco Coca Cola bien frío, 600ml.', price: 30, image: localImg('da-bbq-pit', 'coca-600') },
       { name: 'Fresca 600ml', description: 'Refresco Fresca bien frío, 600ml.', price: 30, image: localImg('da-bbq-pit', 'fresca-600') },
       { name: 'Agua fresca de jamaica con té de limón 600ml', description: 'Bebida de la casa: agua fresca de jamaica mezclada con té de limón. Refrescante y natural.', price: 25, image: localImg('da-bbq-pit', 'agua-jamaica'), tag: 'Especialidad' },
-      { name: 'Postre del día', description: 'Pregunta a nuestro staff por las delicias disponibles hoy. Postres caseros rotativos.', price: 50, image: localImg('da-bbq-pit', 'postre-dia'), tag: 'Postre' },
+      { name: 'Twinkies ahumados', description: 'Twinkies con un toque ahumado especial. Postre divertido y diferente.', price: 50, image: localImg('da-bbq-pit', 'twenkies'), tag: 'Postre' },
     ],
   },
 

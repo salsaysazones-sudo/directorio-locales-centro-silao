@@ -76,7 +76,7 @@ async function main() {
       where: { slug: b.slug },
       include: {
         category: true,
-        products: { orderBy: { createdAt: 'asc' } },
+        products: { where: { hidden: false }, orderBy: { createdAt: 'asc' } },
       },
     })
     if (!business) continue
