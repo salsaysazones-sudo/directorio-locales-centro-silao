@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer'
 import { DirectoryHome } from '@/components/DirectoryHome'
 import { BusinessDetail } from '@/components/BusinessDetail'
 import { AdminPanel } from '@/components/AdminPanel'
+import { ViewStatsPanel } from '@/components/ViewStatsPanel'
 import { api } from '@/lib/api'
 
 function DirectoryApp() {
@@ -17,6 +18,7 @@ function DirectoryApp() {
 
   const businessSlug = searchParams.get('b')
   const isAdmin = searchParams.get('admin') === '1'
+  const isStats = searchParams.get('stats') === '1'
 
   // Cargar stats para el footer
   useEffect(() => {
@@ -30,7 +32,7 @@ function DirectoryApp() {
     if (typeof window !== 'undefined') {
       window.scrollTo({ top: 0, behavior: 'instant' as ScrollBehavior })
     }
-  }, [businessSlug, isAdmin])
+  }, [businessSlug, isAdmin, isStats])
 
   const goHome = useCallback(() => router.push('/'), [router])
   const goAdmin = useCallback(() => router.push('/?admin=1'), [router])
@@ -46,7 +48,9 @@ function DirectoryApp() {
       />
 
       <main className="flex-1">
-        {isAdmin ? (
+        {isStats ? (
+          <ViewStatsPanel onBack={goHome} onOpenBusiness={openBusiness} />
+        ) : isAdmin ? (
           <AdminPanel onOpenBusiness={openBusiness} />
         ) : businessSlug ? (
           <BusinessDetail

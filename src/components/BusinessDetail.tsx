@@ -12,6 +12,7 @@ import { BusinessCard } from './BusinessCard'
 import { WhatsAppButton } from './WhatsAppButton'
 import { PromotionKit } from './PromotionKit'
 import { SmartImage } from './SmartImage'
+import { ViewCounter } from './ViewCounter'
 import { useToast } from '@/hooks/use-toast'
 
 interface BusinessDetailProps {
@@ -26,6 +27,20 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
   const [loading, setLoading] = useState(true)
   const [notFound, setNotFound] = useState(false)
   const { toast } = useToast()
+
+  // Track view in localStorage (contador simple para sitio estático)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    try {
+      const key = 'directorio-silao-views'
+      const raw = localStorage.getItem(key) || '{}'
+      const views = JSON.parse(raw)
+      views[slug] = (views[slug] || 0) + 1
+      localStorage.setItem(key, JSON.stringify(views))
+    } catch (e) {
+      // ignore
+    }
+  }, [slug])
 
   const load = useCallback(async () => {
     setLoading(true)
@@ -312,6 +327,9 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
       {business.whatsapp && (
         <WhatsAppButton phone={business.whatsapp} businessName={business.name} />
       )}
+
+      {/* Contador de visitas (local, por dispositivo) */}
+      <ViewCounter slug={business.slug} />
     </div>
   )
 }

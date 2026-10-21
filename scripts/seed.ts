@@ -189,7 +189,7 @@ const businesses: BusinessSeed[] = [
       { name: 'Mini Burger combinada', description: 'Mini burger con combinación de proteínas al gusto.', price: 99, image: localImg('da-bbq-pit', 'mini-burger-combinada'), hidden: true },
       { name: '3 Mini Sandwiches de pulled pork', description: 'Jugoso pulled pork servido en mini bollo calientito, acompañado de slaw de manzana.', price: 110, image: localImg('da-bbq-pit', 'mini-sandwiches-3'), hidden: true },
       { name: '1 Mini Sandwich individual', description: 'Pulled pork en mini bollo con slaw de manzana.', price: 38, image: localImg('da-bbq-pit', 'mini-sandwich-1'), hidden: true },
-      { name: 'Refresco 600ml (Coca Cola o Fresca)', description: 'Refresco bien frío al gusto: Coca Cola o Fresca. 600ml.', price: 30, image: localImg('da-bbq-pit', 'refresco-600') },
+      { name: 'Refresco 600ml (Coca Cola o Fresca)', description: 'Refresco bien frío al gusto: Coca Cola o Fresca. 600ml.', price: 30, image: localImg('da-bbq-pit', 'coca-600') },
       { name: 'Agua fresca de jamaica con té de limón 600ml', description: 'Bebida de la casa: agua fresca de jamaica mezclada con té de limón. Refrescante y natural.', price: 25, image: localImg('da-bbq-pit', 'agua-jamaica'), tag: 'Especialidad' },
       { name: 'Twinkies ahumados', description: 'Twinkies con un toque ahumado especial. Postre divertido y diferente.', price: 50, image: localImg('da-bbq-pit', 'twenkies'), tag: 'Postre', hidden: true },
     ],
