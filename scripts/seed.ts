@@ -200,7 +200,7 @@ const businesses: BusinessSeed[] = [
   {
     name: 'Camarón Wash',
     slug: 'camaron-wash',
-    description: 'Auto lavado profesional en Silao. Servicio rápido y de calidad para mantener tu vehículo impecable. Lavado exterior, interior, encerado y más.',
+    description: 'Auto lavado profesional en Silao. ¡Tu auto brilla mientras haces tus compras! Espuma activa, servicio rápido y atención de calidad.',
     logo: localImg('camaron-wash', 'logo'),
     cover: localImg('camaron-wash', 'cover'),
     phone: '472 000 0000 (confirmar)',
@@ -215,14 +215,9 @@ const businesses: BusinessSeed[] = [
     plan: 'gratis',
     categorySlug: 'servicios',
     products: [
-      { name: 'Lavado exterior básico', description: 'Lavado completo exterior del vehículo con jabón especial, enjuague y secado.', price: 80, image: localImg('camaron-wash', 'lavado-exterior'), tag: 'Básico' },
-      { name: 'Lavado exterior + interior', description: 'Lavado exterior completo más aspirado interior y limpieza de tablero.', price: 150, image: localImg('camaron-wash', 'lavado-completo'), tag: 'Popular' },
-      { name: 'Lavado premium', description: 'Lavado exterior + interior + limpieza de motor + sillones + aromatizante.', price: 250, image: localImg('camaron-wash', 'lavado-premium'), tag: 'Premium' },
-      { name: 'Encerado', description: 'Aplicación de cera protectora para mantener la pintura brillante y protegida.', price: 200, image: localImg('camaron-wash', 'encerado') },
-      { name: 'Pulido de faros', description: 'Restauración de faros opacos para mejorar la visibilidad nocturna.', price: 300, image: localImg('camaron-wash', 'pulido-faros') },
-      { name: 'Lavado de motor', description: 'Limpieza profunda del motor con productos especiales que no dañan componentes.', price: 120, image: localImg('camaron-wash', 'lavado-motor') },
-      { name: 'Lavado de chasis (camionetas)', description: 'Lavado completo del chasis para vehículos grandes y camionetas.', price: 100, image: localImg('camaron-wash', 'lavado-chasis') },
-      { name: 'Aspirado interior', description: 'Aspirado completo de sillones, pisos y cajuelas.', price: 60, image: localImg('camaron-wash', 'aspirado') },
+      { name: 'Lavado Express', description: 'Espuma activa, limpieza de llantas, brillo de llantas, limpieza de vidrios exteriores.', price: 79, image: localImg('camaron-wash', 'lavado-express'), tag: 'Express' },
+      { name: 'Lavado + Aspirado', description: 'Incluye Lavado Express más: aspirado de interiores, limpieza de tapetes, limpieza de tapicería, limpieza de tablero, limpieza de vidrios interiores y ambientador.', price: 129, image: localImg('camaron-wash', 'lavado-aspirado'), tag: 'Más popular' },
+      { name: 'Lavado Completo', description: 'Incluye Lavado + Aspirado más: limpieza de puertas y tratamiento de plásticos.', price: 159, image: localImg('camaron-wash', 'lavado-completo'), tag: 'Completo' },
     ],
   },
 
