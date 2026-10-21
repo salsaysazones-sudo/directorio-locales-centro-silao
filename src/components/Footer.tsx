@@ -52,12 +52,14 @@ export function Footer({ onGoHome, onGoAdmin, stats }: FooterProps) {
             <p className="text-sm text-slate-400 mb-3">
               Únete al directorio y recibe tu propia URL para compartir en redes.
             </p>
-            <button
-              onClick={onGoAdmin}
+            <a
+              href={`https://wa.me/524775188447?text=${encodeURIComponent('¡Hola! 😊 Me gustaría registrar mi negocio en el Directorio de Silao. ¿Me pueden dar más información?')}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-sm font-semibold text-white gradient-brand px-4 py-2 rounded-xl hover:opacity-90 transition-opacity"
             >
               Registrarme
-            </button>
+            </a>
           </div>
         </div>
 

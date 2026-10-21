@@ -34,11 +34,11 @@ type BusinessSeed = {
 const img = (seed: string, w = 800, h = 600) =>
   `https://picsum.photos/seed/${encodeURIComponent(seed)}/${w}/${h}`
 
-// Foto local si existe, si no usa picsum como fallback
-// Uso: localImg('da-bbq-pit', 'logo') → /images/businesses/da-bbq-pit/logo.jpg
-//      (si no existe el archivo, el browser mostrará picsum via onError en el componente)
+// Foto local sin extensión - SmartImage prueba .jpg, .jpeg, .png, .webp automáticamente
+// Uso: localImg('da-bbq-pit', 'logo') → /images/businesses/da-bbq-pit/logo
+// El componente SmartImage prueba logo.jpg, logo.jpeg, logo.png, logo.webp en orden
 const localImg = (slug: string, filename: string) =>
-  `/images/businesses/${slug}/${filename}.jpg`
+  `/images/businesses/${slug}/${filename}`
 
 const businesses: BusinessSeed[] = [
   // ===== RESTAURANTES (5) =====

@@ -240,7 +240,9 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
               </div>
               <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:items-end">
                 <a
-                  href="?admin=1"
+                  href={`https://wa.me/524775188447?text=${encodeURIComponent('¡Hola! 😊 Me gustaría registrar mi negocio en el Directorio de Silao. ¿Me pueden dar más información?')}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-pink-600 rounded-xl font-bold hover:bg-slate-50 transition-colors"
                 >
                   <Package className="w-4 h-4" />
