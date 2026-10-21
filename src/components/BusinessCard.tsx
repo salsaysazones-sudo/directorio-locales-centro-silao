@@ -2,6 +2,7 @@
 import { MapPin, Star, ArrowUpRight } from 'lucide-react'
 import type { Business } from '@/lib/types'
 import { motion } from 'framer-motion'
+import { SmartImage } from './SmartImage'
 
 interface BusinessCardProps {
   business: Business
@@ -28,11 +29,13 @@ export function BusinessCard({ business, onClick, index = 0 }: BusinessCardProps
       <div className="relative h-40 overflow-hidden">
         <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${color}40, ${color}10)` }} />
         {business.cover ? (
-          <img
+          <SmartImage
             src={business.cover}
             alt={business.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
+            fallbackSeed={`${business.slug}-cover`}
+            fallbackWidth={1200}
+            fallbackHeight={600}
           />
         ) : null}
         {business.plan === 'premium' && (
@@ -59,7 +62,14 @@ export function BusinessCard({ business, onClick, index = 0 }: BusinessCardProps
             style={{ boxShadow: `0 0 0 2px ${color}30` }}
           >
             {business.logo ? (
-              <img src={business.logo} alt={business.name} className="w-full h-full object-cover" />
+              <SmartImage
+                src={business.logo}
+                alt={business.name}
+                className="w-full h-full object-cover"
+                fallbackSeed={`${business.slug}-logo`}
+                fallbackWidth={200}
+                fallbackHeight={200}
+              />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-xl" style={{ background: `${color}20` }}>
                 {business.name.charAt(0)}

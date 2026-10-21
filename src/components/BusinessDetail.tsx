@@ -11,6 +11,7 @@ import { ProductCard } from './ProductCard'
 import { BusinessCard } from './BusinessCard'
 import { WhatsAppButton } from './WhatsAppButton'
 import { PromotionKit } from './PromotionKit'
+import { SmartImage } from './SmartImage'
 import { useToast } from '@/hooks/use-toast'
 
 interface BusinessDetailProps {
@@ -116,7 +117,14 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
         className="relative h-48 sm:h-72 rounded-3xl overflow-hidden shadow-card mb-0"
       >
         {business.cover && (
-          <img src={business.cover} alt={business.name} className="w-full h-full object-cover" />
+          <SmartImage
+            src={business.cover}
+            alt={business.name}
+            className="w-full h-full object-cover"
+            fallbackSeed={`${business.slug}-cover`}
+            fallbackWidth={1200}
+            fallbackHeight={600}
+          />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         <div className="absolute top-4 right-4 flex gap-2">
@@ -139,7 +147,14 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
             style={{ boxShadow: `0 0 0 2px ${color}30` }}
           >
             {business.logo ? (
-              <img src={business.logo} alt={business.name} className="w-full h-full object-cover" />
+              <SmartImage
+                src={business.logo}
+                alt={business.name}
+                className="w-full h-full object-cover"
+                fallbackSeed={`${business.slug}-logo`}
+                fallbackWidth={200}
+                fallbackHeight={200}
+              />
             ) : (
               <div className="w-full h-full flex items-center justify-center text-3xl font-bold" style={{ background: `${color}15`, color }}>
                 {business.name.charAt(0)}

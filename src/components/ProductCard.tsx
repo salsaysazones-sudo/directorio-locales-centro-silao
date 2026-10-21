@@ -1,15 +1,21 @@
 'use client'
 import type { Product } from '@/lib/types'
 import { motion } from 'framer-motion'
+import { SmartImage } from './SmartImage'
 
 interface ProductCardProps {
   product: Product
   businessName?: string
   businessColor?: string
+  businessSlug?: string
+  productSlug?: string // nombre del archivo sin extensión (ej: 'papa-costilla')
   index?: number
 }
 
-export function ProductCard({ product, businessName, businessColor = '#FF6B35', index = 0 }: ProductCardProps) {
+export function ProductCard({ product, businessName, businessColor = '#FF6B35', businessSlug, productSlug, index = 0 }: ProductCardProps) {
+  // Genera seed para fallback de picsum
+  const fallbackSeed = productSlug || product.id || product.name.toLowerCase().replace(/\s+/g, '-')
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -19,11 +25,13 @@ export function ProductCard({ product, businessName, businessColor = '#FF6B35', 
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         {product.image ? (
-          <img
+          <SmartImage
             src={product.image}
             alt={product.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
+            fallbackSeed={fallbackSeed}
+            fallbackWidth={800}
+            fallbackHeight={600}
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-4xl" style={{ background: `${businessColor}15` }}>
