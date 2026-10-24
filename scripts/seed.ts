@@ -28,6 +28,7 @@ type BusinessSeed = {
   featured?: boolean
   hidden?: boolean // true = oculto del directorio público
   plan?: 'gratis' | 'premium'
+  badges?: string[] // IDs de badges (ej: ['solo-finde', 'solo-whatsapp'])
   categorySlug: string
   products: { name: string; description?: string; price: number; image: string; tag?: string; hidden?: boolean }[]
 }
@@ -212,6 +213,7 @@ const businesses: BusinessSeed[] = [
     featured: false,
     hidden: false,
     plan: 'gratis',
+    badges: ['entrega-domicilio'],
     categorySlug: 'servicios',
     products: [
       { name: 'Lavado Express', description: 'Limpió, rápido y listo. Incluye: prelavado, lavado exterior con espuma activa, limpieza de rines y llantas, secado con aire, brillo de llantas.\n\nPrecios:\n• Auto: $110\n• Camioneta: $130\n• Pick-up: $150', price: 110, image: localImg('camaron-wash', 'lavado-express'), tag: 'Express' },
@@ -581,10 +583,11 @@ async function main() {
     const cat = await db.category.findUnique({ where: { slug: b.categorySlug } })
     if (!cat) throw new Error(`Categoría no encontrada: ${b.categorySlug}`)
 
-    const { products, categorySlug, ...businessData } = b
+    const { products, categorySlug, badges, ...businessData } = b
     const business = await db.business.create({
       data: {
         ...businessData,
+        badges: Array.isArray(badges) ? badges.join(',') : '',
         categoryId: cat.id,
       },
     })

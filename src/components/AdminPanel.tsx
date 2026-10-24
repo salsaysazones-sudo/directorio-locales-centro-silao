@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import { api, ADMIN_TOKEN_DEFAULT } from '@/lib/api'
 import type { Business, Category, Product } from '@/lib/types'
+import { BADGES, type BadgeId } from '@/lib/badges'
 import { useAdminStore } from '@/lib/admin-store'
 import { useToast } from '@/hooks/use-toast'
 import { Button } from '@/components/ui/button'
@@ -499,6 +500,7 @@ function BusinessFormDialog({
     phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
     facebook: '', instagram: '', tiktok: '', website: '',
     featured: false, active: true, hidden: false, plan: 'gratis' as 'gratis' | 'premium', categoryId: '',
+    badges: [] as BadgeId[],
   })
 
   useEffect(() => {
@@ -513,6 +515,7 @@ function BusinessFormDialog({
         featured: business.featured, active: business.active,
         hidden: (business as Business).hidden ?? false,
         plan: (business.plan as 'gratis' | 'premium') || 'gratis', categoryId: business.categoryId,
+        badges: (business as Business).badges ?? [],
       })
     } else {
       setForm({
@@ -520,6 +523,7 @@ function BusinessFormDialog({
         phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
         facebook: '', instagram: '', tiktok: '', website: '',
         featured: false, active: true, hidden: false, plan: 'gratis' as 'gratis' | 'premium',
+        badges: [] as BadgeId[],
         categoryId: categories[0]?.id || '',
       })
     }
@@ -633,6 +637,50 @@ function BusinessFormDialog({
                 <strong className="text-pink-700">✦ Plan Premium activo:</strong> el negocio se mostrará con badge premium, borde destacado en grid y prioridad en orden.
               </div>
             )}
+
+            {/* Selector de badges */}
+            <div className="mt-4">
+              <Label className="block mb-2">🏷️ Badges del negocio</Label>
+              <p className="text-xs text-slate-500 mb-3">
+                Marca las características que aplican a este negocio. Se mostrarán como etiquetas visibles en las cards y en el detalle.
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {BADGES.map((badge) => {
+                  const isActive = form.badges.includes(badge.id)
+                  return (
+                    <button
+                      key={badge.id}
+                      type="button"
+                      onClick={() => {
+                        const newBadges = isActive
+                          ? form.badges.filter((b) => b !== badge.id)
+                          : [...form.badges, badge.id]
+                        setForm({ ...form, badges: newBadges })
+                      }}
+                      className={`flex items-center gap-2 px-3 py-2 rounded-lg border text-xs font-semibold transition-all ${
+                        isActive
+                          ? 'border-transparent shadow-sm'
+                          : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
+                      }`}
+                      style={isActive ? {
+                        background: `${badge.color}15`,
+                        color: badge.color,
+                        borderColor: `${badge.color}30`,
+                      } : {}}
+                      title={badge.description}
+                    >
+                      <span className="text-base">{badge.icon}</span>
+                      <span className="truncate">{badge.label}</span>
+                    </button>
+                  )
+                })}
+              </div>
+              {form.badges.length > 0 && (
+                <p className="text-[11px] text-slate-400 mt-2">
+                  {form.badges.length} badge{form.badges.length === 1 ? '' : 's'} seleccionado{form.badges.length === 1 ? '' : 's'}
+                </p>
+              )}
+            </div>
           </TabsContent>
 
           <TabsContent value="contact" className="space-y-3 mt-4">

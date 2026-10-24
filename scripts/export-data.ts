@@ -13,6 +13,7 @@
 import { db } from '../src/lib/db'
 import { promises as fs } from 'fs'
 import path from 'path'
+import { parseBadges } from '../src/lib/badges'
 
 const PUBLIC_DATA = path.join(process.cwd(), 'public', 'data')
 const BIZ_DIR = path.join(PUBLIC_DATA, 'businesses')
@@ -58,7 +59,7 @@ async function main() {
   // 3. Lista de negocios (incluye productos para búsqueda en cliente)
   // Excluye los marcados como hidden (demo ocultos)
   console.log('🏪 Lista de negocios...')
-  const businesses = await db.business.findMany({
+  const businessesRaw = await db.business.findMany({
     where: { active: true, hidden: false },
     include: {
       category: true,
@@ -67,43 +68,55 @@ async function main() {
     },
     orderBy: [{ featured: 'desc' }, { name: 'asc' }],
   })
+  // Transformar badges de string a array
+  const businesses = businessesRaw.map((b) => ({
+    ...b,
+    badges: parseBadges(b.badges),
+  }))
   await writeJson(path.join(PUBLIC_DATA, 'businesses.json'), { businesses })
 
   // 4. Detalle por negocio + recomendaciones
   console.log('🔍 Detalle por negocio...')
   for (const b of businesses) {
-    const business = await db.business.findUnique({
+    const businessRaw = await db.business.findUnique({
       where: { slug: b.slug },
       include: {
         category: true,
         products: { where: { hidden: false }, orderBy: { createdAt: 'asc' } },
       },
     })
-    if (!business) continue
+    if (!businessRaw) continue
+    const business = { ...businessRaw, badges: parseBadges(businessRaw.badges) }
     await writeJson(path.join(BIZ_DIR, `${b.slug}.json`), { business })
 
     // Recomendaciones: misma categoría (excluyendo actual), relleno con otros
-    let recommendations = await db.business.findMany({
+    let recommendationsRaw = await db.business.findMany({
       where: {
         active: true,
+        hidden: false,
         categoryId: business.categoryId,
         id: { not: business.id },
       },
       include: { category: true, _count: { select: { products: true } } },
       take: 4,
     })
-    if (recommendations.length < 4) {
+    if (recommendationsRaw.length < 4) {
       const extra = await db.business.findMany({
         where: {
           active: true,
-          id: { notIn: [business.id, ...recommendations.map((r) => r.id)] },
+          hidden: false,
+          id: { notIn: [business.id, ...recommendationsRaw.map((r) => r.id)] },
         },
         include: { category: true, _count: { select: { products: true } } },
-        take: 4 - recommendations.length,
+        take: 4 - recommendationsRaw.length,
         orderBy: { featured: 'desc' },
       })
-      recommendations = [...recommendations, ...extra]
+      recommendationsRaw = [...recommendationsRaw, ...extra]
     }
+    const recommendations = recommendationsRaw.map((r) => ({
+      ...r,
+      badges: parseBadges(r.badges),
+    }))
     await writeJson(path.join(REC_DIR, `${b.slug}.json`), { recommendations })
   }
 

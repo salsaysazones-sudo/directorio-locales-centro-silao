@@ -1,4 +1,6 @@
 // Tipos compartidos del directorio
+import type { BadgeId } from './badges'
+
 export type Category = {
   id: string
   name: string
@@ -40,6 +42,7 @@ export type Business = {
   active: boolean
   hidden: boolean
   plan: 'gratis' | 'premium'
+  badges: BadgeId[]
   categoryId: string
   category?: Category
   products?: Product[]

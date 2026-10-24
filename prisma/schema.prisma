@@ -40,6 +40,7 @@ model Business {
   active      Boolean   @default(true)
   hidden      Boolean   @default(false) // oculto del directorio público (demo en espera)
   plan        String    @default("gratis") // "gratis" | "premium"
+  badges      String    @default("") // IDs de badges separados por coma (ej: "solo-finde,solo-whatsapp")
   categoryId  String
   category    Category  @relation(fields: [categoryId], references: [id])
   products    Product[]

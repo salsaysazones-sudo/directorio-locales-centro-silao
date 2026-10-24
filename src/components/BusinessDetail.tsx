@@ -13,6 +13,7 @@ import { WhatsAppButton } from './WhatsAppButton'
 import { PromotionKit } from './PromotionKit'
 import { SmartImage } from './SmartImage'
 import { ViewCounter } from './ViewCounter'
+import { BadgesDisplay } from './BadgesDisplay'
 import { trackEvent } from './GoogleAnalytics'
 import { useToast } from '@/hooks/use-toast'
 
@@ -215,6 +216,11 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
                 </span>
               )}
             </div>
+
+            {/* Badges del negocio */}
+            {business.badges && business.badges.length > 0 && (
+              <BadgesDisplay badges={business.badges} variant="detail" />
+            )}
           </div>
 
           {/* WhatsApp CTA */}

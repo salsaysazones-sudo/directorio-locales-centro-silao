@@ -3,6 +3,7 @@ import { MapPin, Star, ArrowUpRight } from 'lucide-react'
 import type { Business } from '@/lib/types'
 import { motion } from 'framer-motion'
 import { SmartImage } from './SmartImage'
+import { BadgesDisplay } from './BadgesDisplay'
 
 interface BusinessCardProps {
   business: Business
@@ -96,6 +97,10 @@ export function BusinessCard({ business, onClick, index = 0 }: BusinessCardProps
         <p className="mt-3 text-xs text-slate-500 line-clamp-2 leading-relaxed">
           {business.description}
         </p>
+
+        {business.badges && business.badges.length > 0 && (
+          <BadgesDisplay badges={business.badges} variant="card" />
+        )}
 
         <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
           {business.city && (
