@@ -214,7 +214,7 @@ const businesses: BusinessSeed[] = [
     featured: false,
     hidden: false,
     plan: 'gratis',
-    badges: ['entrega-domicilio'],
+    badges: [],
     categorySlug: 'servicios',
     products: [
       { name: 'Lavado Express', description: 'Limpió, rápido y listo. Incluye: prelavado, lavado exterior con espuma activa, limpieza de rines y llantas, secado con aire, brillo de llantas.\n\nPrecios:\n• Auto: $110\n• Camioneta: $130\n• Pick-up: $150', price: 110, image: localImg('camaron-wash', 'lavado-express'), tag: 'Express' },
