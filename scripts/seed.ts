@@ -177,7 +177,7 @@ const businesses: BusinessSeed[] = [
     tiktok: 'https://www.tiktok.com/@dabbqpit1',
     featured: true,
     plan: 'premium',
-    badges: ['acepta-tarjeta', 'por-encargo'],
+    badges: ['acepta-tarjeta', 'entrega-domicilio'],
     categorySlug: 'restaurantes',
     products: [
       { name: 'Papa rellena con costilla ahumada', description: 'Papa horneada sazonada con mantequilla y queso amarillo líquido, bañada con salsa estilo BBQ. Incluye costilla ahumada. (tocino incluye brócoli).', price: 90, image: localImg('da-bbq-pit', 'papa-costilla'), tag: 'Top' },
