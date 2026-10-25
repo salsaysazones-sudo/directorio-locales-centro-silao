@@ -2,9 +2,9 @@
 import { db } from '../src/lib/db'
 
 const categories = [
-  { name: 'Restaurantes', slug: 'restaurantes', icon: '🍽️', color: '#FF6B35' },
-  { name: 'Belleza y Cuidado', slug: 'belleza', icon: '💄', color: '#EC4899' },
-  { name: 'Tiendas y Moda', slug: 'tiendas', icon: '🛍️', color: '#8B5CF6' },
+  { name: 'Restaurantes', slug: 'restaurantes', icon: '🎃', color: '#F97316' },
+  { name: 'Belleza y Cuidado', slug: 'belleza', icon: '💄', color: '#A855F7' },
+  { name: 'Tiendas y Moda', slug: 'tiendas', icon: '🛍️', color: '#7C3AED' },
   { name: 'Servicios', slug: 'servicios', icon: '🔧', color: '#06B6D4' },
   { name: 'Salud y Bienestar', slug: 'salud', icon: '🌿', color: '#10B981' },
 ]

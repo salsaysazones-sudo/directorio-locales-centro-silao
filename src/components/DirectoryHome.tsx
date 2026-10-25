@@ -78,9 +78,10 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm text-xs font-bold text-pink-600 mb-5">
-              <Sparkles className="w-3.5 h-3.5" />
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm text-xs font-bold mb-5" style={{ color: '#EA580C' }}>
+              <span className="text-base">🎃</span>
               {stats.businesses} negocios activos · {stats.products} productos
+              <span className="text-base">👻</span>
             </span>
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
               Descubre, comparte haz crecer

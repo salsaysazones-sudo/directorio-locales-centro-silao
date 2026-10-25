@@ -122,18 +122,22 @@
 }
 
 /* ===== Directorio Silao custom styles ===== */
+/* Edición especial Halloween - tonos sutiles calabaza + bruja */
 @layer utilities {
   .gradient-brand {
-    background-image: linear-gradient(135deg, #FF6B35 0%, #EC4899 50%, #8B5CF6 100%);
+    background-image: linear-gradient(135deg, #F97316 0%, #EA580C 35%, #7C3AED 100%);
   }
   .gradient-brand-soft {
-    background-image: linear-gradient(135deg, #FFF4EE 0%, #FCE7F3 50%, #F3E8FF 100%);
+    background-image: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 35%, #F3E8FF 100%);
   }
   .gradient-text {
-    background-image: linear-gradient(135deg, #FF6B35 0%, #EC4899 50%, #8B5CF6 100%);
+    background-image: linear-gradient(135deg, #F97316 0%, #EA580C 35%, #7C3AED 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+  }
+  .shadow-glow {
+    box-shadow: 0 10px 40px -10px rgba(249, 115, 22, 0.45);
   }
   .scrollbar-hide {
     -ms-overflow-style: none;
