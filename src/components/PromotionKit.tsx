@@ -87,20 +87,83 @@ export function PromotionKit({ business, publicUrl }: PromotionKitProps) {
   }
 
   const handleDownloadSocial = async () => {
-    if (!socialCardRef.current) return
     try {
-      // Import dinámico para evitar SSR
-      const html2canvas = (await import('html2canvas')).default
-      const canvas = await html2canvas(socialCardRef.current, {
-        scale: 2,
-        useCORS: true,
-        backgroundColor: null,
-      })
-      const link = document.createElement('a')
-      link.href = canvas.toDataURL('image/png')
-      link.download = `social-${business.slug}.png`
-      link.click()
-      toast({ title: '✅ Imagen social descargada', description: `Lista para Facebook/Instagram stories.` })
+      // Generar imagen social con canvas nativo (más confiable que html2canvas)
+      const canvas = document.createElement('canvas')
+      const SIZE = 1080 // tamaño cuadrado para stories
+      canvas.width = SIZE
+      canvas.height = SIZE
+      const ctx = canvas.getContext('2d')
+      if (!ctx) throw new Error('No canvas ctx')
+
+      // Fondo con gradiente (color de categoría → rosa → violeta)
+      const gradient = ctx.createLinearGradient(0, 0, SIZE, SIZE)
+      gradient.addColorStop(0, color)
+      gradient.addColorStop(0.5, '#EC4899')
+      gradient.addColorStop(1, '#8B5CF6')
+      ctx.fillStyle = gradient
+      ctx.fillRect(0, 0, SIZE, SIZE)
+
+      // Cargar logo del negocio
+      const drawCenteredContent = (logoImg: HTMLImageElement | null) => {
+        // Logo al centro
+        if (logoImg) {
+          const logoSize = SIZE * 0.25
+          const x = (SIZE - logoSize) / 2
+          const y = SIZE * 0.18
+          // Fondo blanco detrás del logo
+          ctx.fillStyle = 'white'
+          const padding = logoSize * 0.12
+          ctx.fillRect(x - padding, y - padding, logoSize + padding * 2, logoSize + padding * 2)
+          ctx.drawImage(logoImg, x, y, logoSize, logoSize)
+        }
+
+        // Nombre del negocio
+        ctx.fillStyle = 'white'
+        ctx.textAlign = 'center'
+        ctx.font = 'bold 56px sans-serif'
+        ctx.fillText(business.name, SIZE / 2, SIZE * 0.6)
+
+        // Categoría
+        if (cat) {
+          ctx.font = '28px sans-serif'
+          ctx.globalAlpha = 0.9
+          ctx.fillText(`${cat.icon} ${cat.name}`, SIZE / 2, SIZE * 0.66)
+          ctx.globalAlpha = 1
+        }
+
+        // URL
+        const urlText = publicUrl.replace(/^https?:\/\//, '')
+        ctx.font = '24px monospace'
+        ctx.globalAlpha = 0.85
+        // Fondo del URL
+        const urlWidth = ctx.measureText(urlText).width
+        const urlBgX = (SIZE - urlWidth - 60) / 2
+        const urlBgY = SIZE * 0.74
+        ctx.fillStyle = 'rgba(255,255,255,0.2)'
+        ctx.fillRect(urlBgX, urlBgY, urlWidth + 60, 50)
+        ctx.fillStyle = 'white'
+        ctx.fillText(urlText, SIZE / 2, SIZE * 0.78)
+        ctx.globalAlpha = 1
+
+        // Descargar
+        const link = document.createElement('a')
+        link.href = canvas.toDataURL('image/png')
+        link.download = `social-${business.slug}.png`
+        link.click()
+        toast({ title: '✅ Imagen social descargada', description: `Lista para Facebook/Instagram stories.` })
+      }
+
+      // Cargar el logo si existe
+      if (business.logo) {
+        const img = new window.Image()
+        img.crossOrigin = 'anonymous'
+        img.onload = () => drawCenteredContent(img)
+        img.onerror = () => drawCenteredContent(null)
+        img.src = business.logo
+      } else {
+        drawCenteredContent(null)
+      }
     } catch (e) {
       console.error(e)
       toast({ title: 'Error', description: 'No se pudo generar la imagen.', variant: 'destructive' })
