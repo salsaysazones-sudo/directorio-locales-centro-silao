@@ -223,6 +223,36 @@ const businesses: BusinessSeed[] = [
     ],
   },
 
+  // ===== PORRASCAPS (real, Silao Gto) =====
+  {
+    name: 'Porrascaps',
+    slug: 'porrascaps',
+    description: 'Venta de gorras y sneakers de calidad en Silao. Menudeo y mayoreo (a partir de 5 piezas). Las mejores marcas y diseños. Síguenos en redes sociales para ver el catálogo completo.',
+    logo: localImg('porrascaps', 'logo'),
+    cover: localImg('porrascaps', 'cover'),
+    phone: '',
+    whatsapp: '524723060948',
+    address: 'Quinta San Lázaro, Fracc. Quinta San José',
+    city: 'Silao, Guanajuato',
+    hours: 'Por encargo (confirmar horario por WhatsApp)',
+    facebook: 'https://www.facebook.com/Porrascaps',
+    instagram: 'https://www.instagram.com/porrascaps',
+    tiktok: 'https://www.tiktok.com/@porrascaps',
+    featured: true,
+    hidden: false,
+    plan: 'premium',
+    badges: ['desde-casa', 'por-encargo'],
+    categorySlug: 'tiendas',
+    products: [
+      { name: 'Gorra plana clásica', description: 'Gorra estilo baseball con visera plana. Varios colores y diseños disponibles. Talla ajustable.', price: 250, image: localImg('porrascaps', 'gorra-plana'), tag: 'Top' },
+      { name: 'Gorra curva tradicional', description: 'Gorra clásica con visera curva. Ajustable, una talla para todos. Diseños variados.', price: 200, image: localImg('porrascaps', 'gorra-curva') },
+      { name: 'Gorra snapback', description: 'Gorra snapback con cierre a presión. Diseños modernos y urbanos. Calidad premium.', price: 300, image: localImg('porrascaps', 'gorra-snapback') },
+      { name: 'Sneakers urbanos', description: 'Tenis urbanos casuales para uso diario. Varios diseños, tallas y colores disponibles.', price: 800, image: localImg('porrascaps', 'sneakers-urbanos'), tag: 'Top' },
+      { name: 'Sneakers deportivos', description: 'Tenis deportivos cómodos y duraderos. Ideales para entrenamiento o uso casual.', price: 950, image: localImg('porrascaps', 'sneakers-deportivos') },
+      { name: 'Mayoreo (5+ piezas)', description: 'Precio especial para mayoreo a partir de 5 piezas. Gorras y sneakers disponibles. Contáctanos por WhatsApp para catálogo y precios especiales.', price: 0, image: localImg('porrascaps', 'mayoreo'), tag: 'Mayoreo' },
+    ],
+  },
+
   // ===== BELLEZA (4) =====
   {
     name: 'Salón Bella Imagen',
