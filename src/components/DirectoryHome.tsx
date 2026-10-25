@@ -143,6 +143,39 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
         </div>
       </section>
 
+      {/* BANNER PROMOCIONAL - Registro GRATIS */}
+      {!query && (
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-4">
+          <div className="relative overflow-hidden rounded-3xl border-2 border-dashed border-orange-300 bg-gradient-to-r from-orange-50 via-pink-50 to-purple-50 p-5 sm:p-6">
+            <div className="absolute -top-8 -right-8 text-8xl opacity-10 select-none">🌼</div>
+            <div className="absolute -bottom-8 -left-8 text-7xl opacity-10 select-none">💀</div>
+            <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+              <div className="flex-1 text-center sm:text-left">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[11px] font-bold mb-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  REGISTRO COMPLETAMENTE GRATIS
+                </div>
+                <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-1 leading-tight">
+                  ¿Tienes un negocio en Silao? <span className="gradient-text">¡Regístrate gratis!</span>
+                </h3>
+                <p className="text-sm text-slate-600">
+                  Aparece en el directorio con tu catálogo, WhatsApp, redes sociales y tu propia URL para compartir.
+                </p>
+              </div>
+              <a
+                href={`https://wa.me/524775188447?text=${encodeURIComponent('¡Hola! 😊 Me gustaría registrar mi negocio en el Directorio de Silao. ¿Me pueden dar más información?')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 px-6 py-3.5 gradient-brand text-white rounded-2xl font-bold text-sm shadow-glow hover:opacity-90 transition-opacity"
+              >
+                <Package className="w-4 h-4" />
+                Registrar mi negocio
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* DESTACADOS */}
       {featured.length > 0 && !query && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
