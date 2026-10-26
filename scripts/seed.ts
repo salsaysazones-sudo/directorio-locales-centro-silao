@@ -7,6 +7,7 @@ const categories = [
   { name: 'Tiendas y Moda', slug: 'tiendas', icon: '🛍️', color: '#BE123C' },
   { name: 'Servicios', slug: 'servicios', icon: '🔧', color: '#06B6D4' },
   { name: 'Salud y Bienestar', slug: 'salud', icon: '🕯️', color: '#F59E0B' },
+  { name: 'Artistas y Eventos', slug: 'artistas-eventos', icon: '🎨', color: '#EC4899' },
 ]
 
 type BusinessSeed = {
@@ -251,6 +252,33 @@ const businesses: BusinessSeed[] = [
       { name: 'Gorra Ace Hats Boston (gótico)', description: 'Edición Boston con diseño gótico. Caja de regalo incluida. Precio de oferta: antes $1,250, ahora $1,150.', price: 1150, image: localImg('porrascaps', 'gorra-ace-hats-boston'), tag: 'Oferta' },
       { name: 'Gorras New Era AA', description: 'Mayoreo a partir de 5 piezas. Bolsas New Era de regalo. Precio de oferta: antes $450, ahora $350.', price: 350, image: localImg('porrascaps', 'gorra-new-era-aa'), tag: 'Mayoreo' },
       { name: 'Gorra Jc Hats', description: '💯 Original. Precio de oferta: antes $1,350, ahora $1,150.', price: 1150, image: localImg('porrascaps', 'gorra-jc-hats'), tag: 'Oferta' },
+    ],
+  },
+
+  // ===== CARITAS FELICES BODY ART (real, Silao Gto) =====
+  {
+    name: 'Caritas Felices Body Art',
+    slug: 'caritas-felices-body-art',
+    description: 'Soy Lupita, pintacaritas 🎨 con experiencia en eventos de todo tipo en Silao, Guanajuato. Me apasiona crear diseños divertidos y seguros que hagan sonreír a grandes y pequeños. Diseños para todas las edades.',
+    logo: localImg('caritas-felices-body-art', 'logo'),
+    cover: localImg('caritas-felices-body-art', 'cover'),
+    phone: '+52 472 123 1447',
+    whatsapp: '524721231447',
+    address: 'Silao, Guanajuato (servicio a domicilio y eventos)',
+    city: 'Silao, Guanajuato',
+    hours: 'Por encargo (confirmar disponibilidad por WhatsApp)',
+    featured: true,
+    hidden: false,
+    plan: 'premium',
+    badges: ['entrega-domicilio', 'por-encargo'],
+    categorySlug: 'artistas-eventos',
+    products: [
+      { name: 'Pintacaritas para niños', description: 'Diseños divertidos y coloridos para los más pequeños. Animales, superhéroes, flores, personajes y más. Pinturas hipoalergénicas y seguras.', price: 50, image: localImg('caritas-felices-body-art', 'pintacaritas-ninos'), tag: 'Top' },
+      { name: 'Pintacaritas para adultos', description: 'Diseños artísticos y elegantes para adultos. Mariposas, flores, diseños abstractos y más. Perfecto para eventos y fiestas.', price: 80, image: localImg('caritas-felices-body-art', 'pintacaritas-adultos'), tag: 'Popular' },
+      { name: 'Maquillaje de Día de Muertos (Catrina)', description: 'Maquillaje tradicional de Día de Muertos estilo Catrina. Incluye diseños florales, calaveritas y decoración con brillantina. Perfecto para festividades.', price: 200, image: localImg('caritas-felices-body-art', 'maquillaje-catrina'), tag: 'Especialidad' },
+      { name: 'Maquillaje artístico', description: 'Diseños personalizados y artisticos para eventos especiales. Trabajos detallados con técnicas profesionales.', price: 150, image: localImg('caritas-felices-body-art', 'maquillaje-artistico') },
+      { name: 'Pintura de yeso para niños', description: 'Taller de pintura de figuras de yeso para niños. Incluye figura, pinturas y materiales. Actividad divertida para fiestas infantiles.', price: 60, image: localImg('caritas-felices-body-art', 'pintura-yeso') },
+      { name: 'Paquete para eventos', description: 'Servicio de pintacaritas para eventos y fiestas. Precios especiales por hora o por evento. Contáctame por WhatsApp para cotización personalizada.', price: 500, image: localImg('caritas-felices-body-art', 'cover'), tag: 'Eventos' },
     ],
   },
 
