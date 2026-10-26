@@ -92,9 +92,15 @@ export function ProductCard({ product, businessName, businessColor = '#FF6B35', 
             </p>
           )}
           <div className="mt-2 flex items-end justify-between gap-2">
-            <span className="font-extrabold text-base" style={{ color: businessColor }}>
-              ${product.price.toFixed(2)}
-            </span>
+            {product.price > 0 ? (
+              <span className="font-extrabold text-base" style={{ color: businessColor }}>
+                ${product.price.toFixed(2)}
+              </span>
+            ) : (
+              <span className="font-bold text-xs text-slate-400 italic">
+                Precio a consultar
+              </span>
+            )}
             {businessName && (
               <span className="text-[10px] text-slate-400 truncate">{businessName}</span>
             )}
@@ -167,9 +173,15 @@ export function ProductCard({ product, businessName, businessColor = '#FF6B35', 
                 <div className="flex items-end justify-between gap-4 pt-4 border-t border-slate-100">
                   <div>
                     <div className="text-[11px] uppercase tracking-wider font-bold text-slate-400 mb-1">Precio</div>
-                    <div className="text-3xl font-extrabold" style={{ color: businessColor }}>
-                      ${product.price.toFixed(2)}
-                    </div>
+                    {product.price > 0 ? (
+                      <div className="text-3xl font-extrabold" style={{ color: businessColor }}>
+                        ${product.price.toFixed(2)}
+                      </div>
+                    ) : (
+                      <div className="text-xl font-bold text-slate-400 italic">
+                        Precio a consultar
+                      </div>
+                    )}
                   </div>
                   {businessName && (
                     <div className="text-right">
