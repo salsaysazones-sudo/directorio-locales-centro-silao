@@ -6,8 +6,12 @@ import type { Business, Category, Product } from './types'
 // - Escritura: APIs de admin (solo disponibles en dev / serverless con backend)
 
 async function apiFetch<T>(path: string, opts?: RequestInit): Promise<T> {
-  const res = await fetch(path, {
+  // Cache buster: agregamos timestamp para evitar caché del navegador
+  const separator = path.includes('?') ? '&' : '?'
+  const cacheBustedPath = path.includes('/data/') ? `${path}${separator}_t=${Date.now()}` : path
+  const res = await fetch(cacheBustedPath, {
     headers: { 'Content-Type': 'application/json', ...(opts?.headers || {}) },
+    cache: 'no-store',
     ...opts,
   })
   const data = await res.json()

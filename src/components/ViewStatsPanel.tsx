@@ -31,7 +31,7 @@ export function ViewStatsPanel({ onBack, onOpenBusiness }: ViewStatsPanelProps) 
       setViews(JSON.parse(raw))
 
       // Cargar lista de negocios
-      const res = await fetch('/data/businesses.json')
+      const res = await fetch(`/data/businesses.json?_t=${Date.now()}`, { cache: 'no-store' })
       const data = await res.json()
       setBusinesses(data.businesses || [])
     } catch (e) {
