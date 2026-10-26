@@ -255,6 +255,32 @@ const businesses: BusinessSeed[] = [
     ],
   },
 
+  // ===== EMOCIONARTE ENCUADERNACIÓN ARTESANAL (real, Silao Gto) =====
+  {
+    name: 'Emocionarte Encuadernación Artesanal',
+    slug: 'emocionarte-encuadernacion',
+    description: 'Encuadernación artesanal hecha a mano en Silao, Guanajuato. Libretas, cuadernos y libros personalizados con diseños únicos. Cada pieza es una obra de arte creada con dedicación y amor por los libros.',
+    logo: localImg('emocionarte-encuadernacion', 'logo'),
+    cover: localImg('emocionarte-encuadernacion', 'cover'),
+    phone: '+52 1 472 299 4452',
+    whatsapp: '524722994452',
+    address: 'Silao, Guanajuato (servicio a domicilio y envíos)',
+    city: 'Silao, Guanajuato',
+    hours: 'Siempre abierto',
+    featured: true,
+    hidden: false,
+    plan: 'premium',
+    badges: ['entrega-domicilio', 'por-encargo'],
+    categorySlug: 'artistas-eventos',
+    products: [
+      { name: 'Libreta personalizada', description: 'Libreta artesanal con diseño de tu elección. Diferentes tamaños y temas disponibles. Encuadernación hecha a mano.', price: 150, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Top' },
+      { name: 'Cuaderno artístico', description: 'Cuaderno con diseños artísticos únicos: paisajes, personajes, flores y más. Cada pieza es irrepetible.', price: 200, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Único' },
+      { name: 'Encuadernación de libros', description: 'Servicio de encuadernación artesanal para libros. Restauración y creación de tapas personalizadas.', price: 300, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Especialidad' },
+      { name: 'Libreta temática (Día de Muertos)', description: 'Libreta con diseños de Día de Muertos: catrinas, calaveras, cempasúchil. Edición especial.', price: 250, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Temporada' },
+      { name: 'Pedido personalizado', description: '¿Tienes una idea específica? Contáctame por WhatsApp y la hacemos realidad. Diseños completamente personalizados.', price: 0, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Personalizado' },
+    ],
+  },
+
   // ===== CARITAS FELICES BODY ART (real, Silao Gto) =====
   {
     name: 'Caritas Felices Body Art',

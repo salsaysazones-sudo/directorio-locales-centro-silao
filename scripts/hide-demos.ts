@@ -1,7 +1,7 @@
 // Script para ocultar demos excepto Barbería El Navaja y Da bbq Pit
 import { db } from '../src/lib/db'
 
-const KEEP_VISIBLE = ['da-bbq-pit', 'camaron-wash', 'porrascaps', 'caritas-felices-body-art']
+const KEEP_VISIBLE = ['da-bbq-pit', 'camaron-wash', 'porrascaps', 'caritas-felices-body-art', 'emocionarte-encuadernacion']
 
 async function main() {
   console.log('🙈 Ocultando negocios demo...\n')
