@@ -794,11 +794,60 @@ function ProductsManagerDialog({
           </DialogDescription>
         </DialogHeader>
 
+        {/* Indicador de plan y límite */}
+        {(() => {
+          const limit = business.plan === 'premium' ? 20 : 5
+          const isAtLimit = products.length >= limit
+          const isPremium = business.plan === 'premium'
+          return (
+            <div className={`p-3 rounded-xl border text-sm flex items-center justify-between gap-3 ${
+              isAtLimit
+                ? 'bg-amber-50 border-amber-200 text-amber-800'
+                : isPremium
+                ? 'bg-gradient-to-r from-pink-50 to-purple-50 border-pink-200 text-pink-700'
+                : 'bg-slate-50 border-slate-200 text-slate-600'
+            }`}>
+              <div className="flex items-center gap-2">
+                <span className="font-bold">
+                  {isPremium ? '✦ Plan Premium' : 'Plan Gratis'}
+                </span>
+                <span className="text-xs">
+                  {products.length}/{limit} productos
+                </span>
+              </div>
+              {isAtLimit ? (
+                <span className="text-xs font-bold">
+                  ⚠️ Límite alcanzado
+                  {!isPremium && ' — mejora a Premium para más'}
+                </span>
+              ) : (
+                <span className="text-xs text-slate-400">
+                  {isPremium ? 'Sin límite hasta 20' : `Puedes agregar ${limit - products.length} más`}
+                </span>
+              )}
+            </div>
+          )
+        })()}
+
         <div className="flex justify-end mb-3">
-          <Button onClick={() => setCreating(true)} size="sm" className="gradient-brand text-white">
-            <Plus className="w-4 h-4" />
-            Agregar producto
-          </Button>
+          {(() => {
+            const limit = business.plan === 'premium' ? 20 : 5
+            const isAtLimit = products.length >= limit
+            if (isAtLimit) {
+              return (
+                <div className="text-xs text-amber-600 font-semibold px-3 py-2 bg-amber-50 rounded-lg border border-amber-200">
+                  ⚠️ Límite de {limit} productos alcanzado
+                  {business.plan !== 'premium' && ' — cambia a Premium en el formulario del negocio'}
+                </div>
+              )
+            }
+            return (
+              <Button onClick={() => setCreating(true)} size="sm" className="gradient-brand text-white">
+                <Plus className="w-4 h-4" />
+                Agregar producto
+              </Button>
+            )
+          })()}
         </div>
 
         <div className="space-y-2 max-h-96 overflow-y-auto scrollbar-thin pr-1">
@@ -830,24 +879,30 @@ function ProductsManagerDialog({
                 </div>
                 <div className="font-bold text-sm" style={{ color: cat?.color || '#FF6B35' }}>${p.price.toFixed(2)}</div>
                 <div className="flex gap-1">
-                  <button
-                    onClick={async () => {
-                      try {
-                        await api.adminUpdateProduct(token, p.id, { hidden: !p.hidden })
-                        toast({
-                          title: p.hidden ? '👁️ Producto visible' : '🙈 Producto oculto',
-                          description: p.hidden ? `${p.name} vuelve a aparecer en el catálogo` : `${p.name} ya no aparece (¿agotado?)`,
-                        })
-                        load(); onChanged()
-                      } catch {
-                        toast({ title: 'Error', variant: 'destructive' })
-                      }
-                    }}
-                    className={`p-1.5 rounded ${p.hidden ? 'text-amber-600 bg-amber-100 hover:bg-amber-200' : 'text-slate-400 hover:bg-white'}`}
-                    title={p.hidden ? 'Mostrar en catálogo' : 'Ocultar del catálogo (agotado)'}
-                  >
-                    {p.hidden ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
+                  {business.plan === 'premium' ? (
+                    <button
+                      onClick={async () => {
+                        try {
+                          await api.adminUpdateProduct(token, p.id, { hidden: !p.hidden })
+                          toast({
+                            title: p.hidden ? '👁️ Producto visible' : '🙈 Producto oculto',
+                            description: p.hidden ? `${p.name} vuelve a aparecer en el catálogo` : `${p.name} ya no aparece (¿agotado?)`,
+                          })
+                          load(); onChanged()
+                        } catch {
+                          toast({ title: 'Error', variant: 'destructive' })
+                        }
+                      }}
+                      className={`p-1.5 rounded ${p.hidden ? 'text-amber-600 bg-amber-100 hover:bg-amber-200' : 'text-slate-400 hover:bg-white'}`}
+                      title={p.hidden ? 'Mostrar en catálogo' : 'Ocultar del catálogo (agotado)'}
+                    >
+                      {p.hidden ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    </button>
+                  ) : (
+                    <span className="p-1.5 rounded text-slate-300 cursor-not-allowed" title="Solo disponible en Plan Premium">
+                      <EyeOff className="w-4 h-4" />
+                    </span>
+                  )}
                   <button onClick={() => setEditing(p)} className="p-1.5 hover:bg-white rounded text-blue-600">
                     <Edit3 className="w-4 h-4" />
                   </button>
