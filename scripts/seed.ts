@@ -273,11 +273,11 @@ const businesses: BusinessSeed[] = [
     badges: ['entrega-domicilio', 'por-encargo'],
     categorySlug: 'artistas-eventos',
     products: [
-      { name: 'Libreta personalizada', description: 'Libreta artesanal con diseño de tu elección. Diferentes tamaños y temas disponibles. Encuadernación hecha a mano.', price: 150, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Top' },
-      { name: 'Cuaderno artístico', description: 'Cuaderno con diseños artísticos únicos: paisajes, personajes, flores y más. Cada pieza es irrepetible.', price: 200, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Único' },
-      { name: 'Encuadernación de libros', description: 'Servicio de encuadernación artesanal para libros. Restauración y creación de tapas personalizadas.', price: 300, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Especialidad' },
-      { name: 'Libreta temática (Día de Muertos)', description: 'Libreta con diseños de Día de Muertos: catrinas, calaveras, cempasúchil. Edición especial.', price: 250, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Temporada' },
-      { name: 'Pedido personalizado', description: '¿Tienes una idea específica? Contáctame por WhatsApp y la hacemos realidad. Diseños completamente personalizados.', price: 0, image: localImg('emocionarte-encuadernacion', 'cover'), tag: 'Personalizado' },
+      { name: 'Libreta personalizada', description: 'Libreta artesanal con diseño de tu elección. Diferentes tamaños y temas disponibles. Encuadernación hecha a mano.', price: 150, image: localImg('emocionarte-encuadernacion', 'libreta-personalizada'), tag: 'Top' },
+      { name: 'Cuaderno artístico', description: 'Cuaderno con diseños artísticos únicos: paisajes, personajes, flores y más. Cada pieza es irrepetible.', price: 200, image: localImg('emocionarte-encuadernacion', 'cuaderno-artistico'), tag: 'Único' },
+      { name: 'Encuadernación de libros', description: 'Servicio de encuadernación artesanal para libros. Restauración y creación de tapas personalizadas.', price: 300, image: localImg('emocionarte-encuadernacion', 'encuadernacion-libros'), tag: 'Especialidad' },
+      { name: 'Libreta temática (Día de Muertos)', description: 'Libreta con diseños de Día de Muertos: catrinas, calaveras, cempasúchil. Edición especial.', price: 250, image: localImg('emocionarte-encuadernacion', 'libreta-dia-muertos'), tag: 'Temporada' },
+      { name: 'Pedido personalizado', description: '¿Tienes una idea específica? Contáctame por WhatsApp y la hacemos realidad. Diseños completamente personalizados.', price: 0, image: localImg('emocionarte-encuadernacion', 'pedido-personalizado'), tag: 'Personalizado' },
     ],
   },
 
