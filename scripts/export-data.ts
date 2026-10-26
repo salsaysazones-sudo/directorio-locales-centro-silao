@@ -35,20 +35,20 @@ async function main() {
   await ensureDir(BIZ_DIR)
   await ensureDir(REC_DIR)
 
-  // 1. Categorías con conteo
+  // 1. Categorías con conteo (solo negocios visibles)
   console.log('📁 Categorías...')
   const categories = await db.category.findMany({
     orderBy: { name: 'asc' },
-    include: { _count: { select: { businesses: true } } },
+    include: { _count: { select: { businesses: { where: { active: true, hidden: false } } } } },
   })
   await writeJson(path.join(PUBLIC_DATA, 'categories.json'), { categories })
 
-  // 2. Stats globales
+  // 2. Stats globales (solo negocios visibles, no ocultos)
   console.log('📊 Stats...')
   const [businessesCount, categoriesCount, productsCount] = await Promise.all([
-    db.business.count({ where: { active: true } }),
+    db.business.count({ where: { active: true, hidden: false } }),
     db.category.count(),
-    db.product.count(),
+    db.product.count({ where: { hidden: false, business: { active: true, hidden: false } } }),
   ])
   await writeJson(path.join(PUBLIC_DATA, 'stats.json'), {
     businesses: businessesCount,
