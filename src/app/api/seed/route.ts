@@ -9,7 +9,7 @@ export async function POST(req: NextRequest) {
   try {
     // Llama al script de seed en background usando Bun
     const { execSync } = await import('child_process')
-    execSync('bun run /home/z/my-project/scripts/seed.ts', {
+    execSync('bun run /home/porr1006/directorio-locales-centro-silao/scripts/seed.ts', {
       stdio: 'pipe',
       timeout: 60000,
     })

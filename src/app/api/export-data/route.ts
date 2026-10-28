@@ -8,7 +8,7 @@ export async function POST(req: NextRequest) {
   }
   try {
     const { execSync } = await import('child_process')
-    execSync('bun run /home/z/my-project/scripts/export-data.ts', {
+    execSync('bun run /home/porr1006/directorio-locales-centro-silao/scripts/export-data.ts', {
       stdio: 'pipe',
       timeout: 60000,
     })
