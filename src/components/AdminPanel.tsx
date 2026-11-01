@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   LogOut, Plus, Edit3, Trash2, X, Store, Package, Search,
   ExternalLink, Star, RefreshCw, Lock, ShieldCheck, ChevronDown,
-  Save, AlertCircle, LayoutGrid, Rocket, FileJson, Eye, EyeOff,
+  Save, AlertCircle, LayoutGrid, Rocket, FileJson, Eye, EyeOff, Video,
 } from 'lucide-react'
 import { api, ADMIN_TOKEN_DEFAULT } from '@/lib/api'
 import type { Business, Category, Product } from '@/lib/types'
@@ -498,7 +498,7 @@ function BusinessFormDialog({
   const [form, setForm] = useState({
     name: '', slug: '', description: '', logo: '', cover: '',
     phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
-    facebook: '', instagram: '', tiktok: '', website: '',
+    facebook: '', instagram: '', tiktok: '', website: '', video: '',
     featured: false, active: true, hidden: false, plan: 'gratis' as 'gratis' | 'premium', categoryId: '',
     badges: [] as BadgeId[],
   })
@@ -512,6 +512,7 @@ function BusinessFormDialog({
         address: business.address || '', city: business.city || '', hours: business.hours || '',
         facebook: business.facebook || '', instagram: business.instagram || '',
         tiktok: business.tiktok || '', website: business.website || '',
+        video: business.video || '',
         featured: business.featured, active: business.active,
         hidden: (business as Business).hidden ?? false,
         plan: (business.plan as 'gratis' | 'premium') || 'gratis', categoryId: business.categoryId,
@@ -521,7 +522,7 @@ function BusinessFormDialog({
       setForm({
         name: '', slug: '', description: '', logo: '', cover: '',
         phone: '', whatsapp: '', email: '', address: '', city: '', hours: '',
-        facebook: '', instagram: '', tiktok: '', website: '',
+        facebook: '', instagram: '', tiktok: '', website: '', video: '',
         featured: false, active: true, hidden: false, plan: 'gratis' as 'gratis' | 'premium',
         badges: [] as BadgeId[],
         categoryId: categories[0]?.id || '',
@@ -731,6 +732,29 @@ function BusinessFormDialog({
               <Label>Sitio web</Label>
               <Input value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} placeholder="https://..." />
             </div>
+            {form.plan === 'premium' ? (
+              <div className="p-4 rounded-xl border border-pink-200 bg-gradient-to-r from-pink-50 to-purple-50">
+                <Label className="flex items-center gap-1.5 mb-1">
+                  <Video className="w-4 h-4 text-pink-600" />
+                  Video (URL de YouTube o TikTok)
+                </Label>
+                <Input
+                  value={form.video}
+                  onChange={(e) => setForm({ ...form, video: e.target.value })}
+                  placeholder="https://youtube.com/shorts/... o https://tiktok.com/@user/video/..."
+                  className="bg-white"
+                />
+                <p className="text-[11px] text-slate-500 mt-2 leading-relaxed">
+                  Pega el enlace de un video corto (5-8 seg) de YouTube (Short o normal) o TikTok.
+                  Se mostrará en la página del negocio con un reproductor. Es una ventaja exclusiva del Plan Premium.
+                </p>
+              </div>
+            ) : (
+              <div className="p-3 rounded-xl border border-slate-200 bg-slate-50 text-xs text-slate-500 flex items-center gap-2">
+                <Video className="w-4 h-4 text-slate-400 shrink-0" />
+                <span>El campo de video está disponible solo en Plan Premium. Activa Premium en la pestaña Básico para agregarlo.</span>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
 

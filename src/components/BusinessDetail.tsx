@@ -14,6 +14,7 @@ import { PromotionKit } from './PromotionKit'
 import { SmartImage } from './SmartImage'
 import { ViewCounter } from './ViewCounter'
 import { BadgesDisplay } from './BadgesDisplay'
+import { BusinessVideo } from './BusinessVideo'
 import { trackEvent } from './GoogleAnalytics'
 import { useToast } from '@/hooks/use-toast'
 
@@ -295,6 +296,17 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
           )}
         </div>
       </div>
+
+      {/* Video (exclusivo Plan Premium) */}
+      {business.plan === 'premium' && business.video && business.video.trim() !== '' && (
+        <section className="mt-6 bg-white rounded-3xl shadow-card border border-slate-100 px-5 sm:px-8 py-6">
+          <BusinessVideo
+            videoUrl={business.video}
+            businessName={business.name}
+            businessSlug={business.slug}
+          />
+        </section>
+      )}
 
       {/* Catálogo */}
       <section className="mt-10">

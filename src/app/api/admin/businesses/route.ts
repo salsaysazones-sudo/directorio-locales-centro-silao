@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   }
   try {
     const body = await req.json()
-    const { name, slug, description, logo, cover, phone, whatsapp, email, address, city, hours, facebook, instagram, tiktok, website, featured, hidden, plan, badges, categoryId, products } = body
+    const { name, slug, description, logo, cover, phone, whatsapp, email, address, city, hours, facebook, instagram, tiktok, website, video, featured, hidden, plan, badges, categoryId, products } = body
 
     if (!name || !slug || !categoryId) {
       return NextResponse.json({ error: 'Faltan campos obligatorios' }, { status: 400 })
@@ -43,6 +43,7 @@ export async function POST(req: NextRequest) {
         instagram: instagram || null,
         tiktok: tiktok || null,
         website: website || null,
+        video: video || null,
         featured: Boolean(featured),
         hidden: Boolean(hidden),
         plan: plan === 'premium' ? 'premium' : 'gratis',

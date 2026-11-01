@@ -26,6 +26,7 @@ type BusinessSeed = {
   instagram?: string
   tiktok?: string
   website?: string
+  video?: string // URL de YouTube/TikTok (solo plan premium)
   featured?: boolean
   hidden?: boolean // true = oculto del directorio público
   plan?: 'gratis' | 'premium'

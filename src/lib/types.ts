@@ -38,6 +38,7 @@ export type Business = {
   instagram: string | null
   tiktok: string | null
   website: string | null
+  video: string | null
   featured: boolean
   active: boolean
   hidden: boolean

@@ -36,6 +36,7 @@ model Business {
   instagram   String?
   tiktok      String?
   website     String?
+  video       String?   // URL de YouTube/TikTok (solo plan premium)
   featured    Boolean   @default(false)
   active      Boolean   @default(true)
   hidden      Boolean   @default(false) // oculto del directorio público (demo en espera)
