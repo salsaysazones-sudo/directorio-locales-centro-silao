@@ -82,7 +82,7 @@ async function main() {
       where: { slug: b.slug },
       include: {
         category: true,
-        products: { where: { hidden: false }, orderBy: { createdAt: 'asc' } },
+        products: { where: { hidden: false }, orderBy: { createdAt: 'desc' } },
       },
     })
     if (!businessRaw) continue

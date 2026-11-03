@@ -9,7 +9,7 @@ export async function GET(
     const { slug } = await params
     const business = await db.business.findUnique({
       where: { slug },
-      include: { category: true, products: { orderBy: { createdAt: 'asc' } } },
+      include: { category: true, products: { orderBy: { createdAt: 'desc' } } },
     })
     if (!business || !business.active) {
       return NextResponse.json({ error: 'Negocio no encontrado' }, { status: 404 })
