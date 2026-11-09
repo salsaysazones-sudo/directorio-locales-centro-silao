@@ -1,5 +1,5 @@
 #!/bin/bash
-# Cambia la paleta del directorio de Día de Muertos (pink/orange/purple) a Buen Fin (amber/slate/gold)
+# Cambia la paleta del directorio (pink/orange/purple) a Buen Fin (amber/slate/gold)
 # Mapeo:
 #   pink-50/100/600  -> amber-50/100/600  (dorado claro/medio)
 #   orange-50/100    -> amber-50/100

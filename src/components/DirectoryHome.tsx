@@ -79,9 +79,7 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
             className="text-center max-w-3xl mx-auto"
           >
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm text-xs font-bold mb-5" style={{ color: '#B8860B' }}>
-              <span className="text-base">🌼</span>
               {stats.businesses} negocios activos · {stats.products} productos
-              <span className="text-base">💀</span>
             </span>
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
               Descubre, comparte haz crecer
@@ -147,8 +145,6 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
       {!query && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-4">
           <div className="relative overflow-hidden rounded-3xl border-2 border-dashed border-amber-300 bg-gradient-to-r from-amber-50 via-amber-50 to-slate-50 p-5 sm:p-6">
-            <div className="absolute -top-8 -right-8 text-8xl opacity-10 select-none">🌼</div>
-            <div className="absolute -bottom-8 -left-8 text-7xl opacity-10 select-none">💀</div>
             <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
               <div className="flex-1 text-center sm:text-left">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[11px] font-bold mb-2">

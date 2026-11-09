@@ -2,12 +2,12 @@
 import { db } from '../src/lib/db'
 
 const categories = [
-  { name: 'Restaurantes', slug: 'restaurantes', icon: '🌼', color: '#B8860B' },
-  { name: 'Belleza y Cuidado', slug: 'belleza', icon: '💀', color: '#B76E79' },
-  { name: 'Tiendas y Moda', slug: 'tiendas', icon: '🛍️', color: '#9CA3AF' },
-  { name: 'Servicios', slug: 'servicios', icon: '🔧', color: '#CD7F32' },
-  { name: 'Salud y Bienestar', slug: 'salud', icon: '🕯️', color: '#E6C878' },
-  { name: 'Artistas y Eventos', slug: 'artistas-eventos', icon: '🎨', color: '#D4AF37' },
+  { name: 'Restaurantes', slug: 'restaurantes', icon: '🍽️', color: '#B8860B' },
+  { name: 'Belleza y Cuidado', slug: 'belleza', icon: '💅', color: '#B76E79' },
+  { name: 'Tiendas y Moda', slug: 'tiendas', icon: '👜', color: '#9CA3AF' },
+  { name: 'Servicios', slug: 'servicios', icon: '🛠️', color: '#CD7F32' },
+  { name: 'Salud y Bienestar', slug: 'salud', icon: '🌿', color: '#E6C878' },
+  { name: 'Artistas y Eventos', slug: 'artistas-eventos', icon: '🎭', color: '#D4AF37' },
 ]
 
 type BusinessSeed = {
@@ -279,7 +279,7 @@ const businesses: BusinessSeed[] = [
       { name: 'Libreta personalizada', description: 'Libreta artesanal con diseño de tu elección. Diferentes tamaños y temas disponibles. Encuadernación hecha a mano.', price: 0, image: localImg('emocionarte-encuadernacion', 'libreta-personalizada'), tag: 'Top' },
       { name: 'Cuaderno artístico', description: 'Cuaderno con diseños artísticos únicos: paisajes, personajes, flores y más. Cada pieza es irrepetible.', price: 0, image: localImg('emocionarte-encuadernacion', 'cuaderno-artistico'), tag: 'Único' },
       { name: 'Encuadernación de libros', description: 'Servicio de encuadernación artesanal para libros. Restauración y creación de tapas personalizadas.', price: 0, image: localImg('emocionarte-encuadernacion', 'encuadernacion-libros'), tag: 'Especialidad' },
-      { name: 'Libreta temática (Día de Muertos)', description: 'Libreta con diseños de Día de Muertos: catrinas, calaveras, cempasúchil. Edición especial.', price: 0, image: localImg('emocionarte-encuadernacion', 'libreta-dia-muertos'), tag: 'Temporada' },
+      { name: 'Libreta temática artesanal', description: 'Libreta con diseños temáticos únicos: ilustraciones detalladas, flores y patrones originales. Edición especial hecha a mano.', price: 0, image: localImg('emocionarte-encuadernacion', 'libreta-dia-muertos'), tag: 'Temporada' },
       { name: 'Pedido personalizado', description: '¿Tienes una idea específica? Contáctame por WhatsApp y la hacemos realidad. Diseños completamente personalizados.', price: 0, image: localImg('emocionarte-encuadernacion', 'pedido-personalizado'), tag: 'Personalizado' },
     ],
   },
@@ -306,7 +306,7 @@ const businesses: BusinessSeed[] = [
     products: [
       { name: 'Pintacaritas para niños', description: 'Diseños divertidos y coloridos para los más pequeños. Animales, superhéroes, flores, personajes y más. Pinturas hipoalergénicas y seguras.', price: 0, image: localImg('caritas-felices-body-art', 'pintacaritas-ninos'), tag: 'Top' },
       { name: 'Pintacaritas para adultos', description: 'Diseños artísticos y elegantes para adultos. Mariposas, flores, diseños abstractos y más. Perfecto para eventos y fiestas.', price: 0, image: localImg('caritas-felices-body-art', 'pintacaritas-adultos'), tag: 'Popular' },
-      { name: 'Maquillaje de Día de Muertos (Catrina)', description: 'Maquillaje tradicional de Día de Muertos estilo Catrina. Incluye diseños florales, calaveritas y decoración con brillantina. Perfecto para festividades.', price: 0, image: localImg('caritas-felices-body-art', 'maquillaje-catrina'), tag: 'Especialidad' },
+      { name: 'Maquillaje temático especial', description: 'Maquillaje temático para eventos y festividades. Diseños florales, decoración con brillantina y trabajos detallados con técnicas profesionales.', price: 0, image: localImg('caritas-felices-body-art', 'maquillaje-catrina'), tag: 'Especialidad' },
       { name: 'Maquillaje artístico', description: 'Diseños personalizados y artisticos para eventos especiales. Trabajos detallados con técnicas profesionales.', price: 0, image: localImg('caritas-felices-body-art', 'maquillaje-artistico') },
       { name: 'Pintura de yeso para niños', description: 'Taller de pintura de figuras de yeso para niños. Incluye figura, pinturas y materiales. Actividad divertida para fiestas infantiles.', price: 0, image: localImg('caritas-felices-body-art', 'pintura-yeso') },
       { name: 'Paquete para eventos', description: 'Servicio de pintacaritas para eventos y fiestas. Precios especiales por hora o por evento. Contáctame por WhatsApp para cotización personalizada.', price: 0, image: localImg('caritas-felices-body-art', 'cover'), tag: 'Eventos' },
