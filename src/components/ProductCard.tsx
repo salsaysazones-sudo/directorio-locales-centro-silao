@@ -15,7 +15,7 @@ interface ProductCardProps {
   index?: number
 }
 
-export function ProductCard({ product, businessName, businessColor = '#FF6B35', businessSlug, productSlug, index = 0 }: ProductCardProps) {
+export function ProductCard({ product, businessName, businessColor = '#B8860B', businessSlug, productSlug, index = 0 }: ProductCardProps) {
   const [modalOpen, setModalOpen] = useState(false)
   const fallbackSeed = productSlug || product.id || product.name.toLowerCase().replace(/\s+/g, '-')
 

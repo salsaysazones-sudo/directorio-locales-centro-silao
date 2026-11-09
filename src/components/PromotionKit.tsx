@@ -99,7 +99,7 @@ export function PromotionKit({ business, publicUrl }: PromotionKitProps) {
       // Fondo con gradiente (color de categoría → rosa → violeta)
       const gradient = ctx.createLinearGradient(0, 0, SIZE, SIZE)
       gradient.addColorStop(0, color)
-      gradient.addColorStop(0.5, '#EC4899')
+      gradient.addColorStop(0.5, '#D4AF37')
       gradient.addColorStop(1, '#8B5CF6')
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, SIZE, SIZE)
@@ -206,10 +206,10 @@ ${business.whatsapp ? `💬 WhatsApp: https://wa.me/${business.whatsapp}` : ''}`
   }
 
   const cat = business.category
-  const color = cat?.color || '#FF6B35'
+  const color = cat?.color || '#B8860B'
 
   return (
-    <section className="mt-10 bg-gradient-to-br from-slate-50 to-pink-50/40 rounded-3xl border border-pink-100 overflow-hidden">
+    <section className="mt-10 bg-gradient-to-br from-slate-50 to-amber-50/40 rounded-3xl border border-amber-100 overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
         className="w-full px-5 sm:px-8 py-5 flex items-center justify-between gap-4 hover:bg-white/40 transition-colors"
@@ -272,7 +272,7 @@ ${business.whatsapp ? `💬 WhatsApp: https://wa.me/${business.whatsapp}` : ''}`
               <div
                 ref={socialCardRef}
                 className="w-full aspect-square rounded-2xl overflow-hidden relative flex flex-col items-center justify-center text-white p-5"
-                style={{ background: `linear-gradient(135deg, ${color} 0%, #EC4899 50%, #8B5CF6 100%)` }}
+                style={{ background: `linear-gradient(135deg, ${color} 0%, #D4AF37 50%, #8B5CF6 100%)` }}
               >
                 {business.cover && (
                   <img

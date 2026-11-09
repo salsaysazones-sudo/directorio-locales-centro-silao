@@ -66,9 +66,9 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
       {/* HERO */}
       <section className="relative overflow-hidden gradient-brand-soft">
         <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
-          <div className="absolute top-20 right-10 w-72 h-72 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          <div className="absolute top-10 left-10 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" />
+          <div className="absolute top-20 right-10 w-72 h-72 bg-amber-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-slate-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -78,7 +78,7 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
             transition={{ duration: 0.6 }}
             className="text-center max-w-3xl mx-auto"
           >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm text-xs font-bold mb-5" style={{ color: '#EA580C' }}>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white shadow-sm text-xs font-bold mb-5" style={{ color: '#B8860B' }}>
               <span className="text-base">🌼</span>
               {stats.businesses} negocios activos · {stats.products} productos
               <span className="text-base">💀</span>
@@ -107,7 +107,7 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
                   value={query}
                   onChange={(e) => { setQuery(e.target.value); onSearchChange?.(e.target.value) }}
                   placeholder="Busca un negocio, producto o categoría..."
-                  className="w-full pl-12 pr-32 py-4 bg-white rounded-2xl text-sm font-medium shadow-card border border-slate-100 focus:ring-4 focus:ring-pink-100 outline-none"
+                  className="w-full pl-12 pr-32 py-4 bg-white rounded-2xl text-sm font-medium shadow-card border border-slate-100 focus:ring-4 focus:ring-amber-100 outline-none"
                   aria-label="Buscar"
                   autoFocus
                 />
@@ -146,7 +146,7 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
       {/* BANNER PROMOCIONAL - Registro GRATIS */}
       {!query && (
         <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8 pt-4">
-          <div className="relative overflow-hidden rounded-3xl border-2 border-dashed border-orange-300 bg-gradient-to-r from-orange-50 via-pink-50 to-purple-50 p-5 sm:p-6">
+          <div className="relative overflow-hidden rounded-3xl border-2 border-dashed border-amber-300 bg-gradient-to-r from-amber-50 via-amber-50 to-slate-50 p-5 sm:p-6">
             <div className="absolute -top-8 -right-8 text-8xl opacity-10 select-none">🌼</div>
             <div className="absolute -bottom-8 -left-8 text-7xl opacity-10 select-none">💀</div>
             <div className="relative flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
@@ -200,7 +200,7 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
         <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
           <div>
             <h2 className="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
-              <Store className="w-5 h-5 text-pink-600" />
+              <Store className="w-5 h-5 text-amber-600" />
               {query ? `Resultados para "${query}"` : 'Todos los negocios'}
             </h2>
             <p className="text-sm text-slate-500 mt-1">
@@ -277,7 +277,7 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
                   href={`https://wa.me/524775188447?text=${encodeURIComponent('¡Hola! 😊 Me gustaría registrar mi negocio en el Directorio de Silao. ¿Me pueden dar más información?')}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-pink-600 rounded-xl font-bold hover:bg-slate-50 transition-colors"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white text-amber-600 rounded-xl font-bold hover:bg-slate-50 transition-colors"
                 >
                   <Package className="w-4 h-4" />
                   Registrar mi negocio

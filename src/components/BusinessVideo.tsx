@@ -91,7 +91,7 @@ export function BusinessVideo({ videoUrl, businessName, businessSlug }: Business
     return (
       <div className="w-full">
         <div className="flex items-center gap-2 mb-3">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-pink-100 text-pink-600">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-amber-100 text-amber-600">
             <Video className="w-4 h-4" />
           </div>
           <div>
@@ -127,7 +127,7 @@ export function BusinessVideo({ videoUrl, businessName, businessSlug }: Business
               />
               <div className="relative z-10 flex flex-col items-center gap-2">
                 <div className="w-16 h-16 rounded-full bg-white/95 flex items-center justify-center shadow-glow group-hover:scale-110 transition-transform">
-                  <Play className="w-7 h-7 text-pink-600 fill-pink-600 ml-1" />
+                  <Play className="w-7 h-7 text-amber-600 fill-amber-600 ml-1" />
                 </div>
                 <span className="text-white text-xs font-semibold bg-black/40 px-3 py-1 rounded-full backdrop-blur-sm">
                   {parsed.isShort ? 'Ver YouTube Short' : 'Ver video'}
@@ -146,7 +146,7 @@ export function BusinessVideo({ videoUrl, businessName, businessSlug }: Business
   return (
     <div className="w-full">
       <div className="flex items-center gap-2 mb-3">
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-pink-100 text-pink-600">
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-amber-100 text-amber-600">
           <Video className="w-4 h-4" />
         </div>
         <div>
@@ -179,7 +179,7 @@ export function BusinessVideo({ videoUrl, businessName, businessSlug }: Business
 
           {/* Patrón decorativo */}
           <div className="absolute inset-0 opacity-20">
-            <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-pink-600 blur-3xl" />
+            <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-amber-600 blur-3xl" />
             <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-cyan-500 blur-3xl" />
           </div>
 

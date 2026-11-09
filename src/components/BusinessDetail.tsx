@@ -117,7 +117,7 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
   }
 
   const cat = business.category
-  const color = cat?.color || '#FF6B35'
+  const color = cat?.color || '#B8860B'
   const publicUrl = typeof window !== 'undefined'
     ? `${window.location.origin}/?b=${business.slug}`
     : `/?b=${business.slug}`
@@ -339,12 +339,12 @@ export function BusinessDetail({ slug, onBack, onOpenBusiness }: BusinessDetailP
         <section className="mt-12">
           <div className="flex items-center justify-between mb-5">
             <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 flex items-center gap-2">
-              <Store className="w-5 h-5 text-pink-600" />
+              <Store className="w-5 h-5 text-amber-600" />
               También te puede gustar
             </h2>
             <button
               onClick={onBack}
-              className="text-sm font-semibold text-pink-600 hover:text-pink-700 flex items-center gap-1"
+              className="text-sm font-semibold text-amber-600 hover:text-amber-700 flex items-center gap-1"
             >
               Ver todos <ChevronRight className="w-4 h-4" />
             </button>

@@ -65,7 +65,7 @@ export function Footer({ onGoHome, onGoAdmin, stats }: FooterProps) {
         <div className="border-t border-slate-800 mt-8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-2">
           <p className="text-xs text-slate-500">© 2026 Directorio Locales Centro Silao. Todos los derechos reservados.</p>
           <p className="text-xs text-slate-500 flex items-center gap-1">
-            Hecho con <Heart className="w-3 h-3 fill-pink-500 text-pink-500" /> para negocios locales
+            Hecho con <Heart className="w-3 h-3 fill-amber-500 text-amber-500" /> para negocios locales
           </p>
         </div>
       </div>

@@ -2,12 +2,12 @@
 import { db } from '../src/lib/db'
 
 const categories = [
-  { name: 'Restaurantes', slug: 'restaurantes', icon: '🌼', color: '#FB923C' },
-  { name: 'Belleza y Cuidado', slug: 'belleza', icon: '💀', color: '#9333EA' },
-  { name: 'Tiendas y Moda', slug: 'tiendas', icon: '🛍️', color: '#BE123C' },
-  { name: 'Servicios', slug: 'servicios', icon: '🔧', color: '#06B6D4' },
-  { name: 'Salud y Bienestar', slug: 'salud', icon: '🕯️', color: '#F59E0B' },
-  { name: 'Artistas y Eventos', slug: 'artistas-eventos', icon: '🎨', color: '#EC4899' },
+  { name: 'Restaurantes', slug: 'restaurantes', icon: '🌼', color: '#B8860B' },
+  { name: 'Belleza y Cuidado', slug: 'belleza', icon: '💀', color: '#B76E79' },
+  { name: 'Tiendas y Moda', slug: 'tiendas', icon: '🛍️', color: '#9CA3AF' },
+  { name: 'Servicios', slug: 'servicios', icon: '🔧', color: '#CD7F32' },
+  { name: 'Salud y Bienestar', slug: 'salud', icon: '🕯️', color: '#E6C878' },
+  { name: 'Artistas y Eventos', slug: 'artistas-eventos', icon: '🎨', color: '#D4AF37' },
 ]
 
 type BusinessSeed = {

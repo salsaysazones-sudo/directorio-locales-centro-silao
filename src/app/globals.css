@@ -122,22 +122,22 @@
 }
 
 /* ===== Directorio Silao custom styles ===== */
-/* Edición especial Día de Muertos - tonos cempasúchil + morado tradicional */
+/* Edición especial Buen Fin - Negro y Dorado/Plateado (elegant, navidad-ready) */
 @layer utilities {
   .gradient-brand {
-    background-image: linear-gradient(135deg, #FB923C 0%, #EA580C 30%, #9333EA 70%, #BE123C 100%);
+    background-image: linear-gradient(135deg, #18181B 0%, #27272A 35%, #B8860B 70%, #D4AF37 100%);
   }
   .gradient-brand-soft {
-    background-image: linear-gradient(135deg, #FFFBEB 0%, #FED7AA 30%, #F3E8FF 70%, #FFE4E6 100%);
+    background-image: linear-gradient(135deg, #FAFAF9 0%, #F5F5F4 30%, #FEF3C7 70%, #FDE68A 100%);
   }
   .gradient-text {
-    background-image: linear-gradient(135deg, #FB923C 0%, #EA580C 30%, #9333EA 70%, #BE123C 100%);
+    background-image: linear-gradient(135deg, #B8860B 0%, #D4AF37 40%, #C0C0C0 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
   .shadow-glow {
-    box-shadow: 0 10px 40px -10px rgba(234, 88, 12, 0.5);
+    box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.45);
   }
   .scrollbar-hide {
     -ms-overflow-style: none;
@@ -161,7 +161,7 @@
     background: rgba(0,0,0,0.25);
   }
   .shadow-glow {
-    box-shadow: 0 10px 40px -10px rgba(236, 72, 153, 0.35);
+    box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.4);
   }
   .shadow-card {
     box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05);

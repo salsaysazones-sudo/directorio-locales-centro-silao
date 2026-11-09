@@ -190,7 +190,7 @@ function AdminDashboard({
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div>
           <h1 className="text-2xl font-extrabold text-slate-900 flex items-center gap-2">
-            <LayoutGrid className="w-6 h-6 text-pink-600" />
+            <LayoutGrid className="w-6 h-6 text-amber-600" />
             Panel de administración
           </h1>
           <p className="text-sm text-slate-500 mt-0.5">
@@ -228,14 +228,14 @@ function AdminDashboard({
 
       {/* Stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-4">
-        <StatCard icon={<Store className="w-4 h-4" />} label="Total" value={stats.total} color="#FF6B35" />
-        <StatCard icon={<Star className="w-4 h-4" />} label="Destacados" value={stats.featured} color="#EC4899" />
+        <StatCard icon={<Store className="w-4 h-4" />} label="Total" value={stats.total} color="#B8860B" />
+        <StatCard icon={<Star className="w-4 h-4" />} label="Destacados" value={stats.featured} color="#D4AF37" />
         <StatCard icon={<ShieldCheck className="w-4 h-4" />} label="Activos" value={stats.active} color="#10B981" />
         <StatCard icon={<Package className="w-4 h-4" />} label="Productos" value={stats.products} color="#8B5CF6" />
       </div>
 
       {/* Kit de promoción */}
-      <div className="mb-6 p-4 bg-gradient-to-r from-pink-50 via-purple-50 to-orange-50 rounded-2xl border border-pink-100">
+      <div className="mb-6 p-4 bg-gradient-to-r from-amber-50 via-slate-50 to-amber-50 rounded-2xl border border-amber-100">
         <div className="flex flex-col sm:flex-row sm:items-end gap-3">
           <div className="flex-1">
             <label className="text-[11px] uppercase tracking-wider font-bold text-slate-500 block mb-1">
@@ -251,7 +251,7 @@ function AdminDashboard({
                 }
               }}
               placeholder="https://midirectorio.com"
-              className="w-full px-3 py-2 bg-white rounded-lg text-sm font-mono border border-pink-100 focus:border-pink-300 focus:ring-2 focus:ring-pink-100 outline-none"
+              className="w-full px-3 py-2 bg-white rounded-lg text-sm font-mono border border-amber-100 focus:border-amber-300 focus:ring-2 focus:ring-amber-100 outline-none"
             />
             <p className="text-[11px] text-slate-500 mt-1">
               Usa la URL real de tu sitio deployado en Cloudflare para que los QRs apunten al lugar correcto.
@@ -294,7 +294,7 @@ function AdminDashboard({
                 <tr><td colSpan={7} className="text-center py-10 text-slate-400">No se encontraron negocios.</td></tr>
               ) : filtered.map((b) => {
                 const cat = categories.find((c) => c.id === b.categoryId)
-                const color = cat?.color || '#FF6B35'
+                const color = cat?.color || '#B8860B'
                 return (
                   <tr key={b.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
                     <td className="px-4 py-3">
@@ -349,7 +349,7 @@ function AdminDashboard({
                         </button>
                         <button
                           onClick={() => setManagingProducts(b)}
-                          className="p-1.5 hover:bg-slate-100 rounded-lg text-purple-600"
+                          className="p-1.5 hover:bg-slate-100 rounded-lg text-slate-600"
                           title="Gestionar productos"
                         >
                           <Package className="w-4 h-4" />
@@ -634,8 +634,8 @@ function BusinessFormDialog({
               </div>
             )}
             {form.plan === 'premium' && (
-              <div className="mt-3 p-3 bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl border border-pink-100 text-xs text-slate-600">
-                <strong className="text-pink-700">✦ Plan Premium activo:</strong> el negocio se mostrará con badge premium, borde destacado en grid y prioridad en orden.
+              <div className="mt-3 p-3 bg-gradient-to-r from-amber-50 to-slate-50 rounded-xl border border-amber-100 text-xs text-slate-600">
+                <strong className="text-amber-700">✦ Plan Premium activo:</strong> el negocio se mostrará con badge premium, borde destacado en grid y prioridad en orden.
               </div>
             )}
 
@@ -733,9 +733,9 @@ function BusinessFormDialog({
               <Input value={form.website} onChange={(e) => setForm({ ...form, website: e.target.value })} placeholder="https://..." />
             </div>
             {form.plan === 'premium' ? (
-              <div className="p-4 rounded-xl border border-pink-200 bg-gradient-to-r from-pink-50 to-purple-50">
+              <div className="p-4 rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-slate-50">
                 <Label className="flex items-center gap-1.5 mb-1">
-                  <Video className="w-4 h-4 text-pink-600" />
+                  <Video className="w-4 h-4 text-amber-600" />
                   Video (URL de YouTube o TikTok)
                 </Label>
                 <Input
@@ -810,7 +810,7 @@ function ProductsManagerDialog({
       <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <Package className="w-5 h-5 text-purple-600" />
+            <Package className="w-5 h-5 text-slate-600" />
             Productos de {business.name}
           </DialogTitle>
           <DialogDescription>
@@ -828,7 +828,7 @@ function ProductsManagerDialog({
               isAtLimit
                 ? 'bg-amber-50 border-amber-200 text-amber-800'
                 : isPremium
-                ? 'bg-gradient-to-r from-pink-50 to-purple-50 border-pink-200 text-pink-700'
+                ? 'bg-gradient-to-r from-amber-50 to-slate-50 border-amber-200 text-amber-700'
                 : 'bg-slate-50 border-slate-200 text-slate-600'
             }`}>
               <div className="flex items-center gap-2">
@@ -897,11 +897,11 @@ function ProductsManagerDialog({
                   <div className={`font-semibold text-sm truncate flex items-center gap-2 ${p.hidden ? 'text-amber-700' : 'text-slate-900'}`}>
                     {p.hidden && <EyeOff className="w-3 h-3 shrink-0" />}
                     {p.name}
-                    {p.tag && <span className="text-[10px] px-1.5 py-0.5 rounded-full text-white" style={{ background: cat?.color || '#FF6B35' }}>{p.tag}</span>}
+                    {p.tag && <span className="text-[10px] px-1.5 py-0.5 rounded-full text-white" style={{ background: cat?.color || '#B8860B' }}>{p.tag}</span>}
                   </div>
                   <div className="text-xs text-slate-500 truncate">{p.description}</div>
                 </div>
-                <div className="font-bold text-sm" style={{ color: cat?.color || '#FF6B35' }}>${p.price.toFixed(2)}</div>
+                <div className="font-bold text-sm" style={{ color: cat?.color || '#B8860B' }}>${p.price.toFixed(2)}</div>
                 <div className="flex gap-1">
                   {business.plan === 'premium' ? (
                     <button
