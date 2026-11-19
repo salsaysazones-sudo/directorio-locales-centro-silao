@@ -121,25 +121,25 @@
   }
 }
 
-/* ===== Directorio Silao custom styles ===== */
-/* Edición especial Buen Fin - Negro y Dorado/Plateado (elegant, navidad-ready) */
+ /* ===== Directorio Silao custom styles ===== */
+/* Paleta Navideña - verde pino + borgoña + plateado */
 @layer utilities {
   .gradient-brand {
-    background-image: linear-gradient(135deg, #18181B 0%, #27272A 35%, #B8860B 70%, #D4AF37 100%);
+    background-image: linear-gradient(135deg, #0F5132 0%, #1B4332 50%, #7F1D1D 100%);
   }
   .gradient-brand-soft {
-    background-image: linear-gradient(135deg, #FAFAF9 0%, #F5F5F4 30%, #FEF3C7 70%, #FDE68A 100%);
+    background-image: linear-gradient(135deg, #F0F4F1 0%, #E8EDE8 40%, #F5F0F0 100%);
   }
   .gradient-text {
-    background-image: linear-gradient(135deg, #B8860B 0%, #D4AF37 40%, #C0C0C0 100%);
+    background-image: linear-gradient(135deg, #0F5132 0%, #7F1D1D 50%, #B8860B 100%);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
   .shadow-glow {
-    box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.45);
+    box-shadow: 0 10px 40px -10px rgba(15, 81, 50, 0.5);
   }
-  .scrollbar-hide {
+    .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
@@ -150,23 +150,15 @@
     width: 6px;
     height: 6px;
   }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
   .scrollbar-thin::-webkit-scrollbar-track {
     background: transparent;
   }
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.15);
-    border-radius: 3px;
-  }
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background: rgba(0,0,0,0.25);
-  }
-  .shadow-glow {
-    box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.4);
-  }
-  .shadow-card {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.05);
-  }
-  .shadow-card-hover {
-    box-shadow: 0 8px 24px -4px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
-  }
 }
+ 
