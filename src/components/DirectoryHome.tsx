@@ -71,9 +71,8 @@ export function DirectoryHome({ onOpenBusiness, initialQuery = '', onSearchChang
           <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-slate-200 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
         </div>
         {/* Esferas de navidad grandes y tenues */}
-        <div className="absolute top-32 right-[18%] w-32 h-32 rounded-full opacity-25 animate-pulse" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95) 0%, #0F5132 35%, #052e16 100%)' }} />
-        <div className="absolute bottom-20 left-[16%] w-28 h-28 rounded-full opacity-25 animate-pulse" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95) 0%, #7F1D1D 35%, #450a0a 100%)', animationDelay: '1.5s' }} />
-
+        <div className="absolute top-32 right-[18%] w-32 h-32 rounded-full opacity-45 animate-pulse" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95) 0%, #0F5132 35%, #052e16 100%)' }} />
+        <div className="absolute bottom-20 left-[16%] w-28 h-28 rounded-full opacity-45 animate-pulse" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95) 0%, #7F1D1D 35%, #450a0a 100%)', animationDelay: '2.5s' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
